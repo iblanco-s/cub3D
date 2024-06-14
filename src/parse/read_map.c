@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   read_map.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jsalaber <jsalaber@student.42.fr>          +#+  +:+       +#+        */
+/*   By: junesalaberria <junesalaberria@student.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/12 12:03:55 by jsalaber          #+#    #+#             */
-/*   Updated: 2024/06/12 12:37:33 by jsalaber         ###   ########.fr       */
+/*   Updated: 2024/06/14 16:26:21 by junesalaber      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,36 @@ void	ft_free_readmap(char *line, char *texture, int fd)
 		free(line);
 	if (fd > 0)
 		close(fd);
+}
+
+void	ft_free_arr(char **arr)
+{
+	int	i;
+
+	i = 0;
+	while (arr[i])
+	{
+		free(arr[i]);
+		i++;
+	}
+	free(arr);
+}
+
+char	*get_map(t_data *data)
+{
+	data->map = ft_strdup("");
+	while (data->line)
+	{
+		if (data->line == '\n')
+		{
+			ft_error("Error: Empty line\n");
+			return (ft_free_readmap(data->line, data->map, -1), NULL);
+		}
+		data->map = ft_strjoin(data->map, data->line);
+		free(data->line);
+		data->line = get_next_line(data->fd);
+	}
+	return (data->map);
 }
 
 int	read_map(char *argv, t_data *data, int *count)
@@ -46,6 +76,7 @@ int	read_map(char *argv, t_data *data, int *count)
 	data->split_texture = ft_split(data->texture, '\n');
 	if (!data->split_texture)
 		return (ft_free_readmap(NULL, data->texture, data->fd), 0);
-	//comprobar contenido del mapa (0/1/2/N/S/W/E)
-	//liberar memoria
+	if (!check_map_content(data, *count))
+		return (0);
+	return (ft_free_readmap(data->line, data->texture, data->fd), 1);
 }
