@@ -6,15 +6,15 @@
 /*   By: junesalaberria <junesalaberria@student.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/14 16:06:49 by junesalaber       #+#    #+#             */
-/*   Updated: 2024/06/14 16:18:39 by junesalaber      ###   ########.fr       */
+/*   Updated: 2024/06/17 12:13:15 by junesalaber      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../cub3D.h"
 
-int	check_surrounded(char *line)
+int	check_column_round_by_wall(char *line)
 {
-	while (*line == ' ' || *line >= 9 && *line <= 13)
+	while (*line == ' ' ||(*line >= 9 && *line <= 13))
 		line++;
 	if (*line != '1' || line[ft_strlen(line) - 1] != '1')
 		return (0);

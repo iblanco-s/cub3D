@@ -6,7 +6,7 @@
 /*   By: junesalaberria <junesalaberria@student.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/12 10:00:09 by jsalaber          #+#    #+#             */
-/*   Updated: 2024/06/14 16:22:44 by junesalaber      ###   ########.fr       */
+/*   Updated: 2024/06/17 12:00:38 by junesalaber      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,16 +26,16 @@ int	check_extension(char *file)
 
 int	check_textures(char *line)
 {
-	while (*line == ' ' || *line >= 9 && *line <= 13)
+	while (*line == ' ' || (*line >= 9 && *line <= 13))
 		line++;
-	if ((!strncmp(line, "NO", 2) || !strnmp(line, "SO", 2)
-			|| !strncmp(line, "WE", 2) || !strnmp(line, "EA", 2))
+	if ((!strncmp(line, "NO", 2) || !strncmp(line, "SO", 2)
+			|| !strncmp(line, "WE", 2) || !strncmp(line, "EA", 2))
 		|| !strncmp(line, "F", 1) || !strncmp(line, "C", 1))
 		return (1);
 	return (0);
 }
 
-int	check_count_texture(t_data *data, int count)
+int	count_texture(t_data *data, int count)
 {
 	if (count != 6)
 	{
@@ -45,6 +45,23 @@ int	check_count_texture(t_data *data, int count)
 		return (0);
 	}
 	return (1);
+}
+
+char	*get_map(t_data *data)
+{
+	data->map = ft_strdup("");
+	while (data->line)
+	{
+		if (data->line[0] == '\n')
+		{
+			ft_error("Error: Empty line\n");
+			return (ft_free_readmap(data->line, data->map, -1), NULL);
+		}
+		data->map = ft_strjoin(data->map, data->line);
+		free(data->line);
+		data->line = get_next_line(data->fd);
+	}
+	return (data->map);
 }
 
 int	check_map_content(t_data *data, int count)
@@ -58,7 +75,7 @@ int	check_map_content(t_data *data, int count)
 	free(data->map);
 	if (!check_split_texture(data->split_texture, count)
 		|| !check_FC_fromat(data->split_texture) || !check_duplicate(data)
-		|| !check_lines(data->split_map) || !check_surrounded_by_wall(data->split_texture))
+		|| !check_lines(data->split_map) || !surrounded_by_wall(data->split_texture))
 		return (ft_free_arr(data->split_map), 0);
 	return (1);		
 }

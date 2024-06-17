@@ -6,7 +6,7 @@
 /*   By: junesalaberria <junesalaberria@student.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/14 15:52:14 by junesalaber       #+#    #+#             */
-/*   Updated: 2024/06/14 16:21:06 by junesalaber      ###   ########.fr       */
+/*   Updated: 2024/06/17 12:13:22 by junesalaber      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ int	check_duplicate(t_data *data)
 	return (1);
 }
 
-int	check_surrounded_by_wall(char *line)
+int	check_line_round_by_wall(char *line)
 {
 	int	i;
 
@@ -46,7 +46,7 @@ int	check_surrounded_by_wall(char *line)
 	return (1);
 }
 
-char	get_last_line(char **map)
+char	*get_last_line(char **map)
 {
 	int	i;
 
@@ -60,7 +60,7 @@ int	check_lines(char **map)
 {
 	if (!map[0])
 		return (ft_error("Error: Empty map\n"), 0);
-	if (!check_surrounded_by_wall(map[0]) || !check_surrounded_by_wall(get_last_line(map)))
+	if (!check_line_round_by_wall(map[0]) || !check_line_round_by_wall(get_last_line(map)))
 		return (ft_error("Error: Map not surrounded by walls\n"), 0);
 	return (1);
 }
@@ -74,7 +74,7 @@ int	surrounded_by_wall(char **map)
 	count = 0;
 	while (map[i])
 	{
-		if (!check_surrounded(map[i]) || !valid_map(map[i], &count) || count > 1)
+		if (!check_column_round_by_wall(map[i]) || !valid_map(map[i], &count) || count > 1)
 			return (ft_error("Error: Invalid map\n"), 0);
 		i++;			
 	}

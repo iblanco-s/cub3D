@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   check_aux.c                                        :+:      :+:    :+:   */
+/*   check_1.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: junesalaberria <junesalaberria@student.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/14 09:04:52 by junesalaber       #+#    #+#             */
-/*   Updated: 2024/06/14 14:05:53 by junesalaber      ###   ########.fr       */
+/*   Updated: 2024/06/17 12:05:10 by junesalaber      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,19 +14,19 @@
 
 int	check_split_letter(char *line)
 {
-	while (*line == ' ' || *line >= 9 && *line <= 13)
+	while (*line == ' ' || (*line >= 9 && *line <= 13))
 		line++;
-	if (!strncmp(line, "NO", 2) || !strnmp(line, "SO", 2)
-			|| !strncmp(line, "WE", 2) || !strnmp(line, "EA", 2)
-			&& (line[2] == ' ' || line[2] >= 9	&& line[2] <= 13))
+	if ((!strncmp(line, "NO", 2) || !strncmp(line, "SO", 2)
+			|| !strncmp(line, "WE", 2) || !strncmp(line, "EA", 2))
+			&& (line[2] == ' ' || (line[2] >= 9	&& line[2] <= 13)))
 			return (1);
-	else if (!strncmp(line, "F", 1) || !strncmp(line, "C", 1)
-			&& (line[1] == ' ' || line[1] >= 9 && line[1] <= 13))
+	else if ((!strncmp(line, "F", 1) || !strncmp(line, "C", 1))
+			&& (line[1] == ' ' || (line[1] >= 9 && line[1] <= 13)))
 			return (1);
 	return (0);
 }
 
-int	check_split_texture(t_data *data, int count)
+int	check_split_texture(char **split_texture, int count)
 {
 	int	i;
 
@@ -35,7 +35,7 @@ int	check_split_texture(t_data *data, int count)
 		return (0);
 	while(++i < count)
 	{
-		if (!check_split_letter(data->split_texture[i]))
+		if (!check_split_letter(split_texture[i]))
 		{
 			ft_error("Error: Wrong texture\n");
 			return (0);
@@ -66,7 +66,7 @@ int	check_comma_position(char *line)
 
 	i = 0;
 	count = 0;
-	while (*line == ' ' || *line >= 9 && *line <= 13
+	while (*line == ' ' || (*line >= 9 && *line <= 13)
 		|| *line == 'F' || *line == 'C')
 	{
 		if (*line == 'F' || *line == 'C')
@@ -79,7 +79,7 @@ int	check_comma_position(char *line)
 		return (0);
 	while (line[i])
 	{
-		if (!ft_isdigit(line[i]) && line[i] != ','
+		if ((!ft_isdigit(line[i]) && line[i] != ',')
 			|| (line[i] == ',' && line[i +1] && line[i + 1] == ','))
 			return (0);
 		i++;
@@ -95,9 +95,9 @@ int	check_FC_fromat(char **split_texture)
 	while (split_texture[i])
 	{
 		p = split_texture[i];
-		while (*p == ' ' || *p >= 9 && *p <= 13)
+		while (*p == ' ' || (*p >= 9 && *p <= 13))
 			p++;
-		if (*p = 'C' || *p == 'F')
+		if (*p == 'C' || *p == 'F')
 		{
 			if (count_comma(p) != 2 || !check_comma_position(p))
 			{
@@ -105,5 +105,7 @@ int	check_FC_fromat(char **split_texture)
 				return (0);
 			}
 		}
+		i++;
 	}
+	return (1);
 }
