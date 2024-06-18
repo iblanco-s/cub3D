@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: junesalaberria <junesalaberria@student.    +#+  +:+       +#+        */
+/*   By: jsalaber <jsalaber@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/12 10:52:44 by jsalaber          #+#    #+#             */
-/*   Updated: 2024/06/17 11:50:52 by junesalaber      ###   ########.fr       */
+/*   Updated: 2024/06/18 13:04:30 by jsalaber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 

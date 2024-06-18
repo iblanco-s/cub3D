@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3D.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: junesalaberria <junesalaberria@student.    +#+  +:+       +#+        */
+/*   By: jsalaber <jsalaber@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/12 09:55:16 by jsalaber          #+#    #+#             */
-/*   Updated: 2024/06/17 12:13:39 by junesalaber      ###   ########.fr       */
+/*   Updated: 2024/06/18 13:01:16 by jsalaber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ typedef struct s_data
 	char	*texture;
 	char	**split_texture;
 	char	*map;
-	char 	**split_map;
+	char	**split_map;
 }	t_data;
 
 //PARSE-check_1.c
@@ -33,7 +33,7 @@ int		check_split_letter(char *line);
 int		check_split_texture(char **split_texture, int count);
 int		count_comma(char *p);
 int		check_comma_position(char *line);
-int		check_FC_fromat(char **split_texture);
+int		check_fc_fromat(char **split_texture);
 
 //PARSE-check_2.c
 int		check_duplicate(t_data *data);

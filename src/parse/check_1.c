@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   check_1.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: junesalaberria <junesalaberria@student.    +#+  +:+       +#+        */
+/*   By: jsalaber <jsalaber@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/14 09:04:52 by junesalaber       #+#    #+#             */
-/*   Updated: 2024/06/17 12:05:10 by junesalaber      ###   ########.fr       */
+/*   Updated: 2024/06/18 13:02:05 by jsalaber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,11 +18,11 @@ int	check_split_letter(char *line)
 		line++;
 	if ((!strncmp(line, "NO", 2) || !strncmp(line, "SO", 2)
 			|| !strncmp(line, "WE", 2) || !strncmp(line, "EA", 2))
-			&& (line[2] == ' ' || (line[2] >= 9	&& line[2] <= 13)))
-			return (1);
+		&& (line[2] == ' ' || (line[2] >= 9 && line[2] <= 13)))
+		return (1);
 	else if ((!strncmp(line, "F", 1) || !strncmp(line, "C", 1))
-			&& (line[1] == ' ' || (line[1] >= 9 && line[1] <= 13)))
-			return (1);
+		&& (line[1] == ' ' || (line[1] >= 9 && line[1] <= 13)))
+		return (1);
 	return (0);
 }
 
@@ -33,7 +33,7 @@ int	check_split_texture(char **split_texture, int count)
 	i = -1;
 	if (count != 6)
 		return (0);
-	while(++i < count)
+	while (++i < count)
 	{
 		if (!check_split_letter(split_texture[i]))
 		{
@@ -55,6 +55,7 @@ int	count_comma(char *p)
 	{
 		if (p[i] == ',')
 			count++;
+		i++;
 	}
 	return (count);
 }
@@ -66,16 +67,16 @@ int	check_comma_position(char *line)
 
 	i = 0;
 	count = 0;
-	while (*line == ' ' || (*line >= 9 && *line <= 13)
-		|| *line == 'F' || *line == 'C')
+	while (line[i] == ' ' || (line[i] >= 9 && line[i] <= 13)
+		|| line[i] == 'F' || line[i] == 'C')
 	{
-		if (*line == 'F' || *line == 'C')
+		if (line[i] == 'F' || line[i] == 'C')
 			count++;
-		line++;
+		i++;
 	}
 	if (count != 1)
 		return (0);
-	if (!ft_isdigit(line[i]) || !ft_isdigit(ft_strlen(line) - 1))
+	if (!ft_isdigit(line[i]) || !ft_isdigit(line[ft_strlen(line) - 1]))
 		return (0);
 	while (line[i])
 	{
@@ -87,10 +88,11 @@ int	check_comma_position(char *line)
 	return (1);
 }
 
-int	check_FC_fromat(char **split_texture)
+int	check_fc_fromat(char **split_texture)
 {
 	int		i;
 	char	*p;
+
 	i = 0;
 	while (split_texture[i])
 	{

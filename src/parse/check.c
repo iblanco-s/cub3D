@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   check.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: junesalaberria <junesalaberria@student.    +#+  +:+       +#+        */
+/*   By: jsalaber <jsalaber@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/12 10:00:09 by jsalaber          #+#    #+#             */
-/*   Updated: 2024/06/17 12:00:38 by junesalaber      ###   ########.fr       */
+/*   Updated: 2024/06/18 13:01:07 by jsalaber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,8 +74,9 @@ int	check_map_content(t_data *data, int count)
 		return (free(data->map), 0);
 	free(data->map);
 	if (!check_split_texture(data->split_texture, count)
-		|| !check_FC_fromat(data->split_texture) || !check_duplicate(data)
-		|| !check_lines(data->split_map) || !surrounded_by_wall(data->split_texture))
+		|| !check_fc_fromat(data->split_texture) || !check_duplicate(data)
+		|| !check_lines(data->split_map)
+		|| !surrounded_by_wall(data->split_map))
 		return (ft_free_arr(data->split_map), 0);
-	return (1);		
+	return (1);
 }
