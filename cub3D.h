@@ -6,7 +6,7 @@
 /*   By: jsalaber <jsalaber@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/12 09:55:16 by jsalaber          #+#    #+#             */
-/*   Updated: 2024/06/18 13:01:16 by jsalaber         ###   ########.fr       */
+/*   Updated: 2024/06/19 10:32:37 by jsalaber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,13 @@ typedef struct s_data
 	char	**split_texture;
 	char	*map;
 	char	**split_map;
+	char	**map_copy;
+	int		map_height;
+	int		map_width;
+	int		player_x;
+	int		player_y;
+	int		map_column;
+	int		map_lines;
 }	t_data;
 
 //PARSE-check_1.c
@@ -58,8 +65,20 @@ void	ft_free_readmap(char *line, char *texture, int fd);
 void	ft_free_arr(char **arr);
 int		read_map(char *argv, t_data *data, int *count);
 
+//PARSE-map_size1.c
+int		map_len(char **map);
+int		line_maxlen(char **map);
+char	*adjust_line(char *line, int max_len);
+int		manage_spaces_width(char **map);
+int		manage_spaces_height(char **map);
+
+//PARSE-map_size.c
+int		map_size(t_data *data);
+
 //PARSE-parse.c
 int		ft_error(char *str);
+void	get_player_position(t_data *data);
+void	get_lines_column(t_data *data);
 int		parse(int argc, char **argv, t_data *data);
 
 #endif

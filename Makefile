@@ -17,6 +17,8 @@ SRCS	= $(SRC_DIR)/parse/check.c \
 		$(SRC_DIR)/parse/check_2.c \
 		$(SRC_DIR)/parse/check_3.c \
 		$(SRC_DIR)/parse/read_map.c \
+		$(SRC_DIR)/parse/map_size1.c \
+		$(SRC_DIR)/parse/map_size.c \
 		$(SRC_DIR)/parse/parse.c \
 
 OBJS    = $(patsubst $(SRC_DIR)/%.c, $(OBJ_DIR)/%.o, $(SRCS))
@@ -33,21 +35,23 @@ MLX_OBJS = $(MLX)/*.o
 
 all: $(NAME)
 
-$(NAME): $(OBJS) $(LIBFT) #$(MLX)
+$(NAME): $(OBJS) $(LIBFT) $(MLX)
 	@$(MAKE) -C $(LIBFT)
-	$(CC) $(CFLAGS) $(OBJS) $(LIBFT_A) -o $(NAME)
+	@$(MAKE) -C $(MLX)
+	$(CC) $(CFLAGS) $(OBJS) $(LIBFT_A) $(MLX_A) -o $(NAME)
 
 $(OBJ_DIR)/%.o: $(SRC_DIR)/%.c
 	@mkdir -p $(@D)
-	$(CC) $(CFLAGS) $(LIBFT_INC) -c $< -o $@
+	$(CC) $(CFLAGS) $(LIBFT_INC) $(MLX_INC) -c $< -o $@
 
 clean:
 	$(RM) $(OBJ_DIR)
-	@$(MAKE) clean -C $(LIBFT) 
+	@$(MAKE) clean -C $(LIBFT)
+	@$(MAKE) clean -C $(MLX) 
 
 
 fclean: clean
-	$(RM) $(NAME) $(LIBFT_A)
+	$(RM) $(NAME) $(LIBFT_A) $(MLX_A)
 
 re: fclean all
 

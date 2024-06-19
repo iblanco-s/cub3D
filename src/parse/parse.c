@@ -6,7 +6,7 @@
 /*   By: jsalaber <jsalaber@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/12 10:52:44 by jsalaber          #+#    #+#             */
-/*   Updated: 2024/06/18 13:04:30 by jsalaber         ###   ########.fr       */
+/*   Updated: 2024/06/19 10:30:25 by jsalaber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,48 @@ int	ft_error(char *str)
 	while (*str)
 		write(2, str++, 1);
 	return (1);
+}
+
+void	get_player_position(t_data *data)
+{
+	int	i;
+	int	j;
+
+	i = 0;
+	while (data->map_copy[i])
+	{
+		j = 0;
+		while (data->map_copy[i][j])
+		{
+			if (data->map_copy[i][j] == 'N' || data->map_copy[i][j] == 'S'
+				|| data->map_copy[i][j] == 'W' || data->map_copy[i][j] == 'E')
+			{
+				data->player_x = j;
+				data->player_y = i;
+				return ;
+			}
+			j++;
+		}
+		i++;
+	}
+}
+
+void	get_lines_column(t_data *data)
+{
+	int	i;
+	int	j;
+
+	i = 0;
+	while (data->split_map[i])
+	{
+		j = 0;
+		while (data->split_map[i][j])
+			j++;
+		if (j > data->map_column)
+			data->map_column = j;
+		i++;
+	}
+	data->map_lines = i;
 }
 
 int	parse(int argc, char **argv, t_data *data)
@@ -31,6 +73,10 @@ int	parse(int argc, char **argv, t_data *data)
 	count = 0;
 	if (!read_map(argv[1], data, &count))
 		return (0);
+	if (!map_size(data))
+		return (0);
+	get_player_position(data);
+	get_lines_column(data);
 	return (1);
 }
 

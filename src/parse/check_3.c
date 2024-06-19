@@ -6,7 +6,7 @@
 /*   By: jsalaber <jsalaber@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/14 16:06:49 by junesalaber       #+#    #+#             */
-/*   Updated: 2024/06/18 13:04:17 by jsalaber         ###   ########.fr       */
+/*   Updated: 2024/06/19 10:01:57 by jsalaber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,6 @@ int	check_column_round_by_wall(char *line)
 {
 	while (*line == ' ' || (*line >= 9 && *line <= 13))
 		line++;
-	printf("line = %s\n", line);
 	if (*line != '1' || line[ft_strlen(line) - 1] != '1')
 		return (0);
 	return (1);
