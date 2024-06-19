@@ -43,7 +43,7 @@ $(NAME): $(OBJS) $(LIBFT) $(MLX)
 
 $(OBJ_DIR)/%.o: $(SRC_DIR)/%.c
 	@mkdir -p $(@D)
-	$(CC) $(CFLAGS) $(LIBFT_INC) $(MLX_INC) -c $< -o $@
+	$(CC) $(CFLAGS) $(MLX_FLAG) $(LIBFT_INC) $(MLX_INC) -c $< -o $@
 
 clean:
 	$(RM) $(OBJ_DIR)
