@@ -4,7 +4,8 @@ CC 		= gcc
 
 CFLAGS	= -Wall -Wextra -Werror -g3 #-fsanitize=address
 
-MLX_FLAG = -framework OpenGL -framework AppKit
+#MLX_FLAG = -framework OpenGL -framework AppKit
+MLX_FLAG = -lXext -lX11 -lm -lbsd
 
 RM		= rm -rf
 
@@ -38,7 +39,7 @@ all: $(NAME)
 $(NAME): $(OBJS) $(LIBFT) $(MLX)
 	@$(MAKE) -C $(LIBFT)
 	@$(MAKE) -C $(MLX)
-	$(CC) $(CFLAGS) $(OBJS) $(LIBFT_A) $(MLX_A) -o $(NAME)
+	$(CC) $(CFLAGS) $(MLX_FLAG) $(OBJS) $(LIBFT_A) $(MLX_A) -o $(NAME)
 
 $(OBJ_DIR)/%.o: $(SRC_DIR)/%.c
 	@mkdir -p $(@D)
