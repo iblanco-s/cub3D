@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: jsalaber <jsalaber@student.42urduliz.co    +#+  +:+       +#+         #
+#    By: iblanco- <iblanco-@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/12/13 15:19:15 by jsalaber          #+#    #+#              #
-#    Updated: 2024/03/14 10:24:39 by jsalaber         ###   ########.fr        #
+#    Updated: 2024/06/19 11:19:50 by iblanco-         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -24,7 +24,7 @@ SRCS    = ft_isalpha.c ft_isdigit.c ft_isalnum.c ft_isascii.c ft_isprint.c \
 		
 OBJS    = $(SRCS:%.c=%.o)
 
-CFLAGS  = -Wall -Wextra -Werror
+CFLAGS  = -Wall -Wextra -Werror -fPIE
 
 all: $(NAME)
 
