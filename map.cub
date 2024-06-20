@@ -1,7 +1,7 @@
-NO textures/.png
-SO textures/.png
-WE textures/.png
-EA textures/.png
+NO textures/gris_0.png
+SO textures/gris_1.png
+WE textures/gris_2.png
+EA textures/gris_3.png
 
 C 0,0,60
 F 60,179,110

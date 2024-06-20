@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3D.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: codespace <codespace@student.42.fr>        +#+  +:+       +#+        */
+/*   By: iblanco- <iblanco-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/12 09:55:16 by jsalaber          #+#    #+#             */
-/*   Updated: 2024/06/20 09:27:06 by codespace        ###   ########.fr       */
+/*   Updated: 2024/06/20 12:40:09 by iblanco-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,5 +80,8 @@ int		ft_error(char *str);
 void	get_player_position(t_data *data);
 void	get_lines_column(t_data *data);
 int		parse(int argc, char **argv, t_data *data);
+
+//RAYCASTING.c
+int		raycasting(t_data data);
 
 #endif
