@@ -2,10 +2,10 @@ NAME	= cub3D
 
 CC 		= gcc
 
-CFLAGS	= -Wall -Wextra -Werror -g3 #-fsanitize=address
+CFLAGS	= -Wall -Wextra -Werror #-g3 #-fsanitize=address
 
 #MLX_FLAG = -framework OpenGL -framework AppKit
-MLX_FLAG = -lXext -lX11 -lm -lbsd
+MLX_FLAG = -lXext -lX11 -lm -lbsd #-lXext -lX11 -lm -lbsd
 
 RM		= rm -rf
 
@@ -21,6 +21,7 @@ SRCS	= $(SRC_DIR)/parse/check.c \
 		$(SRC_DIR)/parse/map_size1.c \
 		$(SRC_DIR)/parse/map_size.c \
 		$(SRC_DIR)/parse/parse.c \
+		$(SRC_DIR)/raycasting/main.c \
 
 OBJS    = $(patsubst $(SRC_DIR)/%.c, $(OBJ_DIR)/%.o, $(SRCS))
 
@@ -39,7 +40,7 @@ all: $(NAME)
 $(NAME): $(OBJS) $(LIBFT) $(MLX)
 	@$(MAKE) -C $(LIBFT)
 	@$(MAKE) -C $(MLX)
-	$(CC) $(CFLAGS) $(MLX_FLAG) $(OBJS) $(LIBFT_A) $(MLX_A) -o $(NAME)
+	$(CC) $(CFLAGS) $(OBJS) $(LIBFT_A) $(MLX_A) $(MLX_FLAG) -o $(NAME)
 
 $(OBJ_DIR)/%.o: $(SRC_DIR)/%.c
 	@mkdir -p $(@D)
