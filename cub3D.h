@@ -6,7 +6,7 @@
 /*   By: jsalaber <jsalaber@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/12 09:55:16 by jsalaber          #+#    #+#             */
-/*   Updated: 2024/06/28 11:04:53 by jsalaber         ###   ########.fr       */
+/*   Updated: 2024/06/28 11:41:56 by jsalaber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,8 +78,8 @@ typedef struct s_mlx
 {
 	void		*img;
 	void		*mlx;
-	void		*mlx_point;
-	void		*win;
+	void		*mlx_ptr;
+	void		*win_ptr;
 	t_data		*dat;
 	t_player	*play;
 	t_ray		*ray;
@@ -150,6 +150,6 @@ void	ft_delete_texture(t_texture *texture);
 void	ft_exit(t_mlx *mlx);
 
 //RAYCASTING.c
-int		raycasting(t_data data);
+int 	raycasting(t_mlx *mlx, t_data data);
 
 #endif
