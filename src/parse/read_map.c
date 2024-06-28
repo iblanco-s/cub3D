@@ -6,7 +6,7 @@
 /*   By: jsalaber <jsalaber@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/12 12:03:55 by jsalaber          #+#    #+#             */
-/*   Updated: 2024/06/18 13:04:43 by jsalaber         ###   ########.fr       */
+/*   Updated: 2024/06/28 10:28:06 by jsalaber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,4 +62,15 @@ int	read_map(char *argv, t_data *data, int *count)
 	if (!check_map_content(data, *count))
 		return (0);
 	return (ft_free_readmap(data->line, data->texture, data->fd), 1);
+}
+
+void	ft_freemap(t_data *data)
+{
+	ft_free_arr(data->split_texture);
+	ft_free_arr(data->split_map);
+	ft_free_arr(data->map_copy);
+	if (data->ceiling)
+		ft_free_arr(data->ceiling);
+	if (data->floor)
+		ft_free_arr(data->floor);
 }

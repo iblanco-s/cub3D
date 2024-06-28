@@ -19,8 +19,13 @@ SRCS	= $(SRC_DIR)/parse/check.c \
 		$(SRC_DIR)/parse/read_map.c \
 		$(SRC_DIR)/parse/map_size1.c \
 		$(SRC_DIR)/parse/map_size.c \
+		$(SRC_DIR)/parse/texture_1.c \
+		$(SRC_DIR)/parse/texture_2.c \
 		$(SRC_DIR)/parse/parse.c \
 		$(SRC_DIR)/raycasting/raycasting_1.c \
+		$(SRC_DIR)/raycasting/image.c \
+		$(SRC_DIR)/raycasting/exit.c \
+		$(SRC_DIR)/main.c \
 
 OBJS    = $(patsubst $(SRC_DIR)/%.c, $(OBJ_DIR)/%.o, $(SRCS))
 
