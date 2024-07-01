@@ -6,7 +6,7 @@
 /*   By: jsalaber <jsalaber@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/12 10:52:44 by jsalaber          #+#    #+#             */
-/*   Updated: 2024/06/28 11:12:53 by jsalaber         ###   ########.fr       */
+/*   Updated: 2024/07/01 10:26:35 by jsalaber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,11 +77,11 @@ int	parse(int argc, char **argv, t_data *data, t_text *list_texture)
 	if (!map_size(data))
 		return (0);
 	if (!ft_list_texture(data, &list_texture))
-		return (free_list(&list_texture), ft_freemap(data), 0);
+		return (free_textures(list_texture), ft_freemap(data), 0);
 	if (!check_color(data, list_texture))
-		return (free_list(&list_texture), ft_freemap(data), 0);
+		return (free_textures(list_texture), ft_freemap(data), 0);
 	get_player_position(data);
 	get_lines_column(data);
-	data->text = list_texture;
+	data->texture_list = list_texture;
 	return (1);
 }

@@ -6,7 +6,7 @@
 /*   By: jsalaber <jsalaber@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/28 09:58:13 by jsalaber          #+#    #+#             */
-/*   Updated: 2024/06/28 11:09:04 by jsalaber         ###   ########.fr       */
+/*   Updated: 2024/07/01 09:45:54 by jsalaber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,13 +31,13 @@ t_text	*new_texture(char *line)
 	if (!ft_strncmp(line, "NO", 2) || !ft_strncmp(line, "SO", 2)
 		|| !ft_strncmp(line, "WE", 2) || !ft_strncmp(line, "EA", 2))
 	{
-		list->path = ft_substr(line, 0, 2);
-		list->value = ft_substr(line, get_index(line, 2), ft_strlen(line));
+		list->value = ft_substr(line, 0, 2);
+		list->path = ft_substr(line, get_index(line, 2), ft_strlen(line));
 	}
 	else if (!ft_strncmp(line, "F", 1) || !ft_strncmp(line, "C", 1))
 	{
-		list->path = ft_substr(line, 0, 1);
-		list->value = ft_substr(line, get_index(line, 1), ft_strlen(line));
+		list->value = ft_substr(line, 0, 1);
+		list->path = ft_substr(line, get_index(line, 1), ft_strlen(line));
 	}
 	list->next = NULL;
 	return (list);

@@ -6,7 +6,7 @@
 /*   By: jsalaber <jsalaber@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/12 09:55:16 by jsalaber          #+#    #+#             */
-/*   Updated: 2024/06/28 11:41:56 by jsalaber         ###   ########.fr       */
+/*   Updated: 2024/07/01 11:43:36 by jsalaber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,17 +17,25 @@
 # include "libft/get_next_line.h"
 # include "minilibx-linux/mlx.h"
 # include <unistd.h>
+# include <stdbool.h>
 
-# define SW 1920
-# define SH 1080
+# define WW 800
+# define WH 600
 # define FOV 60
 # define TILE_SIZE 64
+
+typedef struct s_texture
+{
+	void	*img;
+	bool	created;
+}	t_texture;
 
 typedef struct s_text
 {
 	char			*value;
 	char			*path;
 	struct s_text	*next;
+	t_texture		*texture;
 }	t_text;
 
 typedef struct s_data
@@ -47,7 +55,7 @@ typedef struct s_data
 	int		map_lines;
 	char	**floor;
 	char	**ceiling;
-	t_text	*text;
+	t_text	*texture_list;
 }	t_data;
 
 typedef struct s_player
@@ -66,24 +74,15 @@ typedef struct s_ray
 	double		distance;
 }	t_ray;
 
-typedef struct s_texture
-{
-	void	*no;
-	void	*so;
-	void	*we;
-	void	*ea;
-}	t_texture;
-
 typedef struct s_mlx
 {
-	void		*img;
 	void		*mlx;
 	void		*mlx_ptr;
 	void		*win_ptr;
+	void		*img_ptr;
 	t_data		*dat;
 	t_player	*play;
 	t_ray		*ray;
-	t_texture	*texture;
 	t_text		*mlx_texture;
 }	t_mlx;
 
@@ -132,24 +131,27 @@ int		map_size(t_data *data);
 int		ft_list_texture(t_data *data, t_text **mlx_texture);
 
 //PARSE-texture_2.c
-void	free_list(t_text **tx);
 int		check_color(t_data *data, t_text *mlx_texture);
 
 //PARSE-parse.c
 int		ft_error(char *str);
 void	get_player_position(t_data *data);
 void	get_lines_column(t_data *data);
-int		parse(int argc, char **argv, t_data *data, t_text *list_texture);
+int		parse(int argc, char **argv, t_data *data, t_text *tx);
 
-//RAYCASTING-image.c
-void	create_image(t_mlx *mlx);
+//RAYCASTING-exec.c
+void	create_window(t_mlx *mlx);
 int		exec(t_data *dat);
 
+//RAYCASTING-load_texture.c
+bool	load_texture(t_texture *texture, void *mlx_ptr, t_text *list_texture);
+bool	load_all_textures(t_data *data, t_mlx *mlx);
+
 //RAYCASTING-exit.c
-void	ft_delete_texture(t_texture *texture);
+void	free_textures(t_text *texture_list);
 void	ft_exit(t_mlx *mlx);
 
 //RAYCASTING.c
-int 	raycasting(t_mlx *mlx, t_data data);
+int		raycasting(t_mlx *mlx, t_data data);
 
 #endif

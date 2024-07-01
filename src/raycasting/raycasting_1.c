@@ -62,7 +62,7 @@ int raycasting(t_mlx *mlx, t_data data)
     int color = 0x00FF00; 
 
     mlx->mlx_ptr = mlx_init();
-    mlx->win_ptr = mlx_new_window(mlx->mlx_ptr, SW, SH, "Ventana MLX");
+    mlx->win_ptr = mlx_new_window(mlx->mlx_ptr, WW, WH, "Ventana MLX");
 
     mlx_pixel_put(mlx->mlx_ptr, mlx->win_ptr, TILE_SIZE, TILE_SIZE, color); 
 

@@ -6,27 +6,11 @@
 /*   By: jsalaber <jsalaber@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/28 10:12:33 by jsalaber          #+#    #+#             */
-/*   Updated: 2024/06/28 11:08:12 by jsalaber         ###   ########.fr       */
+/*   Updated: 2024/07/01 10:13:02 by jsalaber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../cub3D.h"
-
-void	free_list(t_text **tx)
-{
-	t_text	*tmp;
-
-	tmp = *tx;
-	while (tmp)
-	{
-		*tx = tmp->next;
-		free(tmp->path);
-		free(tmp->value);
-		free(tmp);
-		tmp = *tx;
-	}
-	free(*tx);
-}
 
 int	check_color_value(char **color)
 {
@@ -44,12 +28,12 @@ int	check_color_value(char **color)
 
 void	save_color(t_text *text, t_data *data)
 {
-	if (!ft_strncmp(text->path, "F", 2))
+	if (!ft_strncmp(text->value, "F", 2))
 	{
 		data->floor = ft_split(text->value, ',');
 		return ;
 	}
-	else if (!ft_strncmp(text->path, "C", 2))
+	else if (!ft_strncmp(text->value, "C", 2))
 	{
 		data->ceiling = ft_split(text->value, ',');
 		return ;
@@ -65,9 +49,9 @@ int	check_color(t_data *data, t_text *mlx_texture)
 	tmp = mlx_texture;
 	while (tmp)
 	{
-		if (!ft_strncmp(tmp->path, "F", 1) || !ft_strncmp(tmp->path, "C", 1))
+		if (!ft_strncmp(tmp->value, "F", 1) || !ft_strncmp(tmp->value, "C", 1))
 		{
-			if (!check_color_value(ft_split(tmp->value, ',')))
+			if (!check_color_value(ft_split(tmp->path, ',')))
 				return (ft_error("Error: Invalid color value\n"), 0);
 			save_color(tmp, data);
 		}

@@ -1,7 +1,7 @@
-NO textures/gris_0.png
-SO textures/gris_1.png
-WE textures/gris_2.png
-EA textures/gris_3.png
+NO textures/grass.xpm
+SO textures/grass.xpm
+WE textures/grass.xpm
+EA textures/grass.xpm
 
 C 0,0,60
 F 60,179,110
