@@ -6,7 +6,7 @@
 /*   By: jsalaber <jsalaber@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/01 09:31:07 by jsalaber          #+#    #+#             */
-/*   Updated: 2024/07/01 11:44:56 by jsalaber         ###   ########.fr       */
+/*   Updated: 2024/07/01 12:32:26 by jsalaber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,15 +59,7 @@ bool	load_all_textures(t_data *data, t_mlx *mlx)
 	while (cur_texture)
 	{
 		if (cur_texture->texture == NULL)
-		{
-			cur_texture->texture = (t_texture *)ft_calloc(sizeof(t_texture), 1);
-			if (!cur_texture->texture)
-			{
-				free_textures(data->texture_list);
-				ft_freemap(data);
-				return (false);
-			}
-		}
+			cur_texture->texture = mlx->texture;
 		if (!load_texture(cur_texture->texture, mlx->mlx_ptr, cur_texture))
 			return (free_textures(data->texture_list), ft_freemap(data), false);
 		cur_texture = cur_texture->next;

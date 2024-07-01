@@ -26,6 +26,7 @@ SRCS	= $(SRC_DIR)/parse/check.c \
 		$(SRC_DIR)/raycasting/exec.c \
 		$(SRC_DIR)/raycasting/exit.c \
 		$(SRC_DIR)/raycasting/load_texture.c \
+		$(SRC_DIR)/raycasting/move.c \
 		$(SRC_DIR)/main.c \
 
 OBJS    = $(patsubst $(SRC_DIR)/%.c, $(OBJ_DIR)/%.o, $(SRCS))

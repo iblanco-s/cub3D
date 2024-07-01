@@ -6,7 +6,7 @@
 /*   By: jsalaber <jsalaber@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/12 09:55:16 by jsalaber          #+#    #+#             */
-/*   Updated: 2024/07/01 11:43:36 by jsalaber         ###   ########.fr       */
+/*   Updated: 2024/07/01 13:20:24 by jsalaber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,11 @@
 # define WH 600
 # define FOV 60
 # define TILE_SIZE 64
+# define ESC 65307
+# define W   119
+# define A   97
+# define S   115
+# define D   100
 
 typedef struct s_texture
 {
@@ -83,6 +88,7 @@ typedef struct s_mlx
 	t_data		*dat;
 	t_player	*play;
 	t_ray		*ray;
+	t_texture	*texture;
 	t_text		*mlx_texture;
 }	t_mlx;
 
@@ -146,6 +152,9 @@ int		exec(t_data *dat);
 //RAYCASTING-load_texture.c
 bool	load_texture(t_texture *texture, void *mlx_ptr, t_text *list_texture);
 bool	load_all_textures(t_data *data, t_mlx *mlx);
+
+//RAYCASTING-move.c
+int		key_pressed(int keycode, void *param);
 
 //RAYCASTING-exit.c
 void	free_textures(t_text *texture_list);
