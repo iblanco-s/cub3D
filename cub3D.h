@@ -6,7 +6,7 @@
 /*   By: jsalaber <jsalaber@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/12 09:55:16 by jsalaber          #+#    #+#             */
-/*   Updated: 2024/07/01 13:20:24 by jsalaber         ###   ########.fr       */
+/*   Updated: 2024/07/02 12:43:16 by jsalaber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,16 +18,22 @@
 # include "minilibx-linux/mlx.h"
 # include <unistd.h>
 # include <stdbool.h>
+# include <math.h>
 
 # define WW 800
 # define WH 600
 # define FOV 60
 # define TILE_SIZE 64
+# define PI 3.14159265358979323846
+# define ROTATION_SPEED 0.042
+# define MOVE_SPEED 0.05
 # define ESC 65307
 # define W   119
 # define A   97
 # define S   115
 # define D   100
+# define LEFT 65361
+# define RIGHT 65363
 
 typedef struct s_texture
 {
@@ -67,6 +73,11 @@ typedef struct s_player
 {
 	int		playr_x;
 	int		playr_y;
+	double	playr_dir;
+	float	fov_rad;
+	int		rotate;
+	int		h_move;
+	int		v_move;
 }	t_player;
 
 typedef struct s_ray
@@ -77,6 +88,7 @@ typedef struct s_ray
 	double		wall_hitv_x;
 	double		wall_hitv_y;
 	double		distance;
+	int			index;
 }	t_ray;
 
 typedef struct s_mlx
@@ -154,13 +166,18 @@ bool	load_texture(t_texture *texture, void *mlx_ptr, t_text *list_texture);
 bool	load_all_textures(t_data *data, t_mlx *mlx);
 
 //RAYCASTING-move.c
+void	execute_player_move(t_mlx *mlx, double move_x, double move_y);
 int		key_pressed(int keycode, void *param);
 
 //RAYCASTING-exit.c
 void	free_textures(t_text *texture_list);
 void	ft_exit(t_mlx *mlx);
 
-//RAYCASTING.c
+//RAYCASTING.c-raycasting_2.c
+void	draw_wall_segment(t_mlx *mlx, int ray);
+void	draw_floor_ceiling(t_mlx *mlx, int ray, int d_pix, int u_pix);
+
+//RAYCASTING.c-raycasting_1.c
 int		raycasting(t_mlx *mlx, t_data data);
 
 #endif

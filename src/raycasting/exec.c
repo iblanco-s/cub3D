@@ -6,7 +6,7 @@
 /*   By: jsalaber <jsalaber@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/28 09:28:47 by jsalaber          #+#    #+#             */
-/*   Updated: 2024/07/01 13:22:36 by jsalaber         ###   ########.fr       */
+/*   Updated: 2024/07/02 12:49:53 by jsalaber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@ void	create_window(t_mlx *mlx)
 int	redraw_map(void *mlx_t)
 {
 	t_mlx	*mlx;
+	int		ray;
 
 	mlx = (t_mlx *)mlx_t;
 	if (mlx->img_ptr)
@@ -31,6 +32,13 @@ int	redraw_map(void *mlx_t)
 	{
 		printf("Error: image not created\n");
 		return (ft_exit(mlx), 1);
+	}
+	execute_player_move(mlx, 0, 0);
+	ray = 0;
+	while (ray < WW)
+	{
+		draw_wall_segment(mlx, ray);
+		ray++;
 	}
 	// raycasting(mlx, mlx->dat);
 	mlx_put_image_to_window(mlx->mlx_ptr, mlx->win_ptr, mlx->img_ptr, 0, 0);
@@ -44,6 +52,24 @@ int	exit_game(void *param)
 	mlx = (t_mlx *)param;
 	ft_exit(mlx);
 	exit(0);
+}
+
+void	locate_player(t_mlx *mlx)
+{
+	int		p;
+
+	p = mlx->dat->split_map[mlx->dat->player_y][mlx->dat->player_x];
+	if (p == 'E')
+		mlx->play->playr_dir = 0;
+	if (p == 'S')
+		mlx->play->playr_dir = PI / 2;
+	if (p == 'W')
+		mlx->play->playr_dir = PI;
+	if (p == 'N')
+		mlx->play->playr_dir = 3 * PI / 2;
+	mlx->play->playr_x = (mlx->dat->player_x * TILE_SIZE) + TILE_SIZE / 2;
+	mlx->play->playr_y = (mlx->dat->player_y * TILE_SIZE) + TILE_SIZE / 2;
+	mlx->play->fov_rad = (FOV * PI) / 180;
 }
 
 int	exec(t_data *dat)
@@ -63,6 +89,7 @@ int	exec(t_data *dat)
 	if (!load_all_textures(dat, &mlx))
 		return (ft_exit(&mlx), 0);
 	create_window(&mlx);
+	locate_player(&mlx);
 	mlx_key_hook(mlx.win_ptr, &key_pressed, &mlx);
 	mlx_loop_hook(mlx.mlx_ptr, &redraw_map, &mlx);
 	mlx_loop(mlx.mlx_ptr);

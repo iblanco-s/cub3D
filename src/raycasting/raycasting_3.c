@@ -1,25 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   raycasting_3.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jsalaber <jsalaber@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/06/28 11:12:32 by jsalaber          #+#    #+#             */
-/*   Updated: 2024/07/02 12:35:48 by jsalaber         ###   ########.fr       */
+/*   Created: 2024/07/02 12:54:07 by jsalaber          #+#    #+#             */
+/*   Updated: 2024/07/02 12:54:49 by jsalaber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../cub3D.h"
+#include "../../cub3D.h"
 
-int	main(int argc, char **argv)
+void	*get_texture(t_mlx *mlx, int flag)
 {
-	t_data	data;
-
-	data.texture_list = NULL;
-	parse(argc, argv, &data, data.texture_list);
-	// raycasting(data);
 	
-	exec(&data);
-	return (0);
 }
