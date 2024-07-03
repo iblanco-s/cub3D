@@ -6,7 +6,7 @@
 /*   By: jsalaber <jsalaber@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/12 09:55:16 by jsalaber          #+#    #+#             */
-/*   Updated: 2024/07/02 12:43:16 by jsalaber         ###   ########.fr       */
+/*   Updated: 2024/07/03 10:37:30 by jsalaber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@
 # include <unistd.h>
 # include <stdbool.h>
 # include <math.h>
+# include <stdint.h>
 
 # define WW 800
 # define WH 600
@@ -48,6 +49,23 @@ typedef struct s_text
 	struct s_text	*next;
 	t_texture		*texture;
 }	t_text;
+
+typedef struct s_mlxtex
+{
+	uint32_t	height;
+	uint32_t	width;
+	uint32_t	bytes;
+	uint32_t*	pixel;
+	
+}	t_mlxtex;
+
+typedef struct s_tex
+{
+	t_mlxtex	*ea;
+	t_mlxtex	*we;
+	t_mlxtex	*so;
+	t_mlxtex	*no;
+}	t_tex;
 
 typedef struct s_data
 {
@@ -83,12 +101,13 @@ typedef struct s_player
 typedef struct s_ray
 {
 	double		ray_angle;
-	double		wall_hith_x;
-	double		wall_hith_y;
-	double		wall_hitv_x;
-	double		wall_hitv_y;
+	double		wall_h_x;
+	double		wall_h_y;
+	double		wall_v_x;
+	double		wall_v_y;
 	double		distance;
 	int			index;
+	int			flag;
 }	t_ray;
 
 typedef struct s_mlx
@@ -102,6 +121,7 @@ typedef struct s_mlx
 	t_ray		*ray;
 	t_texture	*texture;
 	t_text		*mlx_texture;
+	t_tex		*tex;
 }	t_mlx;
 
 //PARSE-check_1.c
@@ -178,6 +198,16 @@ void	draw_wall_segment(t_mlx *mlx, int ray);
 void	draw_floor_ceiling(t_mlx *mlx, int ray, int d_pix, int u_pix);
 
 //RAYCASTING.c-raycasting_1.c
-int		raycasting(t_mlx *mlx, t_data data);
+// int		raycasting(t_mlx *mlx, t_data data);
+
+//RAYCASTING.c-raycasting_3.c
+int		reverse_bytes(int num);
+float 	normalize_angle(float angle);
+void	*get_texture(t_mlx *mlx, int flag);
+double	get_impact_point(t_mlxtex *tex, t_mlx *mlx);
+int		unit_circle(float angle, char axis);
+
+//RAYCASTING.c-raycasting_4.c
+void	raycasting(t_mlx *mlx);
 
 #endif

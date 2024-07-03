@@ -55,18 +55,18 @@ void debug_data(t_data data)
     printf("map_lines: %d\n", data.map_lines);
 }
 
-int raycasting(t_mlx *mlx, t_data data)
-{
-	debug_data(data);
+// int raycasting(t_mlx *mlx, t_data data)
+// {
+// 	debug_data(data);
 
-    int color = 0x00FF00; 
+//     int color = 0x00FF00; 
 
-    mlx->mlx_ptr = mlx_init();
-    mlx->win_ptr = mlx_new_window(mlx->mlx_ptr, WW, WH, "Ventana MLX");
+//     mlx->mlx_ptr = mlx_init();
+//     mlx->win_ptr = mlx_new_window(mlx->mlx_ptr, WW, WH, "Ventana MLX");
 
-    mlx_pixel_put(mlx->mlx_ptr, mlx->win_ptr, TILE_SIZE, TILE_SIZE, color); 
+//     mlx_pixel_put(mlx->mlx_ptr, mlx->win_ptr, TILE_SIZE, TILE_SIZE, color); 
 
-    mlx_loop(mlx->mlx_ptr);
+//     mlx_loop(mlx->mlx_ptr);
 
-    return 0;
-}
+//     return 0;
+// }

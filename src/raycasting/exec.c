@@ -6,7 +6,7 @@
 /*   By: jsalaber <jsalaber@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/28 09:28:47 by jsalaber          #+#    #+#             */
-/*   Updated: 2024/07/02 12:49:53 by jsalaber         ###   ########.fr       */
+/*   Updated: 2024/07/03 10:35:54 by jsalaber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,6 @@ void	create_window(t_mlx *mlx)
 int	redraw_map(void *mlx_t)
 {
 	t_mlx	*mlx;
-	int		ray;
 
 	mlx = (t_mlx *)mlx_t;
 	if (mlx->img_ptr)
@@ -34,13 +33,7 @@ int	redraw_map(void *mlx_t)
 		return (ft_exit(mlx), 1);
 	}
 	execute_player_move(mlx, 0, 0);
-	ray = 0;
-	while (ray < WW)
-	{
-		draw_wall_segment(mlx, ray);
-		ray++;
-	}
-	// raycasting(mlx, mlx->dat);
+	raycasting(mlx);
 	mlx_put_image_to_window(mlx->mlx_ptr, mlx->win_ptr, mlx->img_ptr, 0, 0);
 	return (0);
 }

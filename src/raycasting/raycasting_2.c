@@ -6,7 +6,7 @@
 /*   By: jsalaber <jsalaber@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/02 10:45:51 by jsalaber          #+#    #+#             */
-/*   Updated: 2024/07/02 12:53:51 by jsalaber         ###   ########.fr       */
+/*   Updated: 2024/07/03 11:41:54 by jsalaber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,18 +38,37 @@ void	draw_floor_ceiling(t_mlx *mlx, int ray, int d_pix, int u_pix)
 	i = d_pix;
 	color = get_rgba(ft_atoi(mlx->dat->floor[0]),
 		ft_atoi(mlx->dat->floor[1]), ft_atoi(mlx->dat->floor[2]), 255);
-	while (i < u_pix)
+	while (i < WH)
 		ft_put_pixel(mlx, ray, i++, color);
 	color = get_rgba(ft_atoi(mlx->dat->ceiling[0]),
 		ft_atoi(mlx->dat->ceiling[1]), ft_atoi(mlx->dat->ceiling[2]), 255);
 	i = 0;
-	while (i < d_pix)
+	while (i < u_pix)
 		ft_put_pixel(mlx, ray, i++, color);
 }
 
 void	draw_wall(t_mlx *mlx, int d_pix, int u_pix, double wall_height)
 {
-	
+	double		ip_x;
+	double		ip_y;
+	t_mlxtex	*tex;
+	uint32_t	*pix;
+	double		scale;
+
+	tex = get_texture(mlx, mlx->ray->flag);
+	pix = (uint32_t *)tex->pixel;
+	scale = (double)tex->height / wall_height;
+	ip_x = get_impact_point(tex, mlx);
+	ip_y = (u_pix - (WH / 2) + (wall_height / 2)) * scale;
+	if (ip_y < 0)
+		ip_y = 0;
+	while (u_pix < d_pix)
+	{
+		ft_put_pixel(mlx, mlx->ray->index, u_pix,
+			reverse_bytes(pix[(int)ip_y * tex->width + (int)ip_x]));
+		ip_y += scale;
+		u_pix++;
+	}	
 }
 
 void	draw_wall_segment(t_mlx *mlx, int ray)
@@ -68,5 +87,6 @@ void	draw_wall_segment(t_mlx *mlx, int ray)
 	if (u_pix < 0)
 		u_pix = 0;
 	mlx->ray->index = ray;
+	draw_wall(mlx, d_pix, u_pix, wall_height);
 	draw_floor_ceiling(mlx, ray, d_pix, u_pix);
 }
