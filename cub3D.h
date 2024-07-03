@@ -20,6 +20,7 @@
 # include <stdbool.h>
 # include <math.h>
 # include <stdint.h>
+#include "mlx_int.h"
 
 # define WW 800
 # define WH 600
@@ -50,21 +51,29 @@ typedef struct s_text
 	t_texture		*texture;
 }	t_text;
 
-typedef struct s_mlxtex
-{
-	uint32_t	height;
-	uint32_t	width;
-	uint32_t	bytes;
-	uint32_t*	pixel;
+// typedef struct s_mlxtex
+// {
+// 	uint32_t	height;
+// 	uint32_t	width;
+// 	uint32_t	bytes;
+// 	uint32_t*	pixel;
 	
-}	t_mlxtex;
+// }	t_mlxtex;
+
+// typedef struct s_tex
+// {
+// 	t_mlxtex	*ea;
+// 	t_mlxtex	*we;
+// 	t_mlxtex	*so;
+// 	t_mlxtex	*no;
+// }	t_tex;
 
 typedef struct s_tex
 {
-	t_mlxtex	*ea;
-	t_mlxtex	*we;
-	t_mlxtex	*so;
-	t_mlxtex	*no;
+	t_img	*ea;
+	t_img	*we;
+	t_img	*so;
+	t_img	*no;
 }	t_tex;
 
 typedef struct s_data
