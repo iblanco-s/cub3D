@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exec.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jsalaber <jsalaber@student.42.fr>          +#+  +:+       +#+        */
+/*   By: codespace <codespace@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/28 09:28:47 by jsalaber          #+#    #+#             */
-/*   Updated: 2024/07/03 10:35:54 by jsalaber         ###   ########.fr       */
+/*   Updated: 2024/07/03 15:59:44 by codespace        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,6 +74,7 @@ int	exec(t_data *dat)
 	mlx.play = (t_player *)ft_calloc(1, sizeof(t_player));
 	mlx.ray = (t_ray *)ft_calloc(1, sizeof(t_ray));
 	mlx.texture = (t_texture *)ft_calloc(1, sizeof(t_texture));
+	mlx.tex = (t_tex *)ft_calloc(1, sizeof(t_tex));
 	mlx.dat = dat;
 	mlx.img_ptr = NULL;
 	mlx.mlx_ptr = mlx_init();

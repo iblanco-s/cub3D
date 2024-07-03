@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   raycasting_3.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jsalaber <jsalaber@student.42.fr>          +#+  +:+       +#+        */
+/*   By: codespace <codespace@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/02 12:54:07 by jsalaber          #+#    #+#             */
-/*   Updated: 2024/07/03 10:38:31 by jsalaber         ###   ########.fr       */
+/*   Updated: 2024/07/03 15:28:01 by codespace        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,20 +52,20 @@ void	*get_texture(t_mlx *mlx, int flag)
 	}
 }
 
-double	get_impact_point(t_mlxtex *tex, t_mlx *mlx)
+double	get_impact_point(t_img *img, t_mlx *mlx)
 {
 	double	impact_point;
 	double	temp;
 	
 	if (mlx->ray->flag == 1)
 	{
-		temp = mlx->ray->wall_h_x * (tex->width / TILE_SIZE);
-		impact_point = temp - (int)(temp / tex->width) * tex->width;
+		temp = mlx->ray->wall_h_x * (img->width / TILE_SIZE);
+		impact_point = temp - (int)(temp / img->width) * img->width;
 	}
 	else
 	{
-		temp = mlx->ray->wall_v_y * (tex->width / TILE_SIZE);
-		impact_point = temp - (int)(temp / tex->width) * tex->width;
+		temp = mlx->ray->wall_v_y * (img->width / TILE_SIZE);
+		impact_point = temp - (int)(temp / img->width) * img->width;
 	}
 	return (impact_point);
 }

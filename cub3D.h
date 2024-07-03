@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3D.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jsalaber <jsalaber@student.42.fr>          +#+  +:+       +#+        */
+/*   By: codespace <codespace@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/12 09:55:16 by jsalaber          #+#    #+#             */
-/*   Updated: 2024/07/03 10:37:30 by jsalaber         ###   ########.fr       */
+/*   Updated: 2024/07/03 16:14:28 by codespace        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -191,7 +191,7 @@ void	create_window(t_mlx *mlx);
 int		exec(t_data *dat);
 
 //RAYCASTING-load_texture.c
-bool	load_texture(t_texture *texture, void *mlx_ptr, t_text *list_texture);
+bool	load_texture(t_mlx *mlx, t_text *tx);
 bool	load_all_textures(t_data *data, t_mlx *mlx);
 
 //RAYCASTING-move.c
@@ -213,7 +213,7 @@ void	draw_floor_ceiling(t_mlx *mlx, int ray, int d_pix, int u_pix);
 int		reverse_bytes(int num);
 float 	normalize_angle(float angle);
 void	*get_texture(t_mlx *mlx, int flag);
-double	get_impact_point(t_mlxtex *tex, t_mlx *mlx);
+double	get_impact_point(t_img *img, t_mlx *mlx);
 int		unit_circle(float angle, char axis);
 
 //RAYCASTING.c-raycasting_4.c

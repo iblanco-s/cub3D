@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   raycasting_2.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jsalaber <jsalaber@student.42.fr>          +#+  +:+       +#+        */
+/*   By: codespace <codespace@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/02 10:45:51 by jsalaber          #+#    #+#             */
-/*   Updated: 2024/07/03 11:41:54 by jsalaber         ###   ########.fr       */
+/*   Updated: 2024/07/03 15:44:14 by codespace        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,21 +51,23 @@ void	draw_wall(t_mlx *mlx, int d_pix, int u_pix, double wall_height)
 {
 	double		ip_x;
 	double		ip_y;
-	t_mlxtex	*tex;
-	uint32_t	*pix;
+	t_img		*img;
+	//Pixmap		pix;
 	double		scale;
 
-	tex = get_texture(mlx, mlx->ray->flag);
-	pix = (uint32_t *)tex->pixel;
-	scale = (double)tex->height / wall_height;
-	ip_x = get_impact_point(tex, mlx);
+	img = get_texture(mlx, mlx->ray->flag);
+	//pix = img->pix;
+	scale = (double)img->height / wall_height;
+	ip_x = get_impact_point(img, mlx);
 	ip_y = (u_pix - (WH / 2) + (wall_height / 2)) * scale;
 	if (ip_y < 0)
 		ip_y = 0;
 	while (u_pix < d_pix)
 	{
+		int pixel_index = ((int)ip_y * img->width + (int)ip_x) * (img->bpp / 8);
+		int pixel_value = *(int *)(img->data + pixel_index);
 		ft_put_pixel(mlx, mlx->ray->index, u_pix,
-			reverse_bytes(pix[(int)ip_y * tex->width + (int)ip_x]));
+			reverse_bytes(pixel_value));
 		ip_y += scale;
 		u_pix++;
 	}	
