@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3D.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jsalaber <jsalaber@student.42.fr>          +#+  +:+       +#+        */
+/*   By: iblanco- <iblanco-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/12 09:55:16 by jsalaber          #+#    #+#             */
-/*   Updated: 2024/07/04 14:01:06 by jsalaber         ###   ########.fr       */
+/*   Updated: 2024/07/04 16:05:19 by iblanco-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -184,6 +184,7 @@ bool	load_all_textures(t_data *data, t_mlx *mlx);
 //RAYCASTING-move.c
 void	execute_player_move(t_mlx *mlx, double move_x, double move_y);
 int		key_pressed(int keycode, void *param);
+int		hanlde_key_release(int keycode, t_mlx *mlx);
 
 //RAYCASTING-exit.c
 void	free_textures(t_text *texture_list);

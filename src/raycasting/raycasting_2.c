@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   raycasting_2.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jsalaber <jsalaber@student.42.fr>          +#+  +:+       +#+        */
+/*   By: iblanco- <iblanco-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/02 10:45:51 by jsalaber          #+#    #+#             */
-/*   Updated: 2024/07/04 14:11:21 by jsalaber         ###   ########.fr       */
+/*   Updated: 2024/07/04 16:09:12 by iblanco-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,30 +49,42 @@ void	draw_wall(t_mlx *mlx, int d_pix, int u_pix, double wall_height)
 	double		ip_x;
 	double		ip_y;
 	t_img		*img;
-	//Pixmap		pix;
 	double		scale;
 	int			pixel_index;
 	int			pixel_value;
 
 	img = get_texture(mlx, mlx->ray->flag);
 	scale = (double)img->height / wall_height;
-	ip_x = get_impact_point(img, mlx);
-	ip_y = (u_pix - (WH / 2) + (wall_height / 2)) * scale;
-	if (ip_y < 0)
-		ip_y = 0;
-	while (u_pix < d_pix)
+
+
+    scale = (double)img->height / wall_height;
+    ip_x = get_impact_point(img, mlx);
+
+    // Ensure ip_x is within bounds
+    if (ip_x < 0) ip_x = 0;
+    if (ip_x >= img->width) ip_x = img->width - 1;
+    int screen_y = u_pix;
+
+	while (screen_y < d_pix && screen_y < WH)
 	{
-		pixel_index = ((int)ip_y * img->width + (int)ip_x) * (img->bpp / 8);
-		if (pixel_index >= 0 && pixel_index < img->width * img->height * (img->bpp / 8))
+		
+       	// Calculate texture y-coordinate
+        ip_y = (int)((screen_y - u_pix) * scale);
+        
+        // Ensure ip_y is within bounds
+        if (ip_y < 0) ip_y = 0;
+        if (ip_y >= img->height) ip_y = img->height - 1;
+
+		pixel_index = (ip_y * img->width + (int)ip_x) * (img->bpp / 8);
+ 		if (pixel_index >= 0 && pixel_index < (img->width * img->height * (img->bpp / 8)))
 		{
 			pixel_value = *(int *)(img->data + pixel_index);
-			ft_put_pixel(mlx, mlx->ray->index, u_pix,
+			ft_put_pixel(mlx, mlx->ray->index, screen_y,
 				reverse_bytes(pixel_value));
 		}
 		else
 			printf("Error: pixel_index fuera de los límites\n");
-		ip_y += scale;
-		u_pix++;
+		screen_y++;
 	}
 }
 

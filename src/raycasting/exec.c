@@ -6,7 +6,7 @@
 /*   By: iblanco- <iblanco-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/28 09:28:47 by jsalaber          #+#    #+#             */
-/*   Updated: 2024/07/04 15:18:10 by iblanco-         ###   ########.fr       */
+/*   Updated: 2024/07/04 16:09:03 by iblanco-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,7 +88,8 @@ int	exec(t_data *dat)
 	mlx.img_data = mlx_get_data_addr(mlx.img_ptr, &mlx.bpp, &mlx.size_line, &mlx.endian);
 	locate_player(&mlx);
 	mlx_hook(mlx.win_ptr, 17, 0, exit_game, &mlx);
-	mlx_key_hook(mlx.win_ptr, &key_pressed, &mlx);
+	mlx_hook(mlx.win_ptr, 2, 1L<<0, key_pressed, &mlx);
+	mlx_hook(mlx.win_ptr, 3, 1L<<1, hanlde_key_release, &mlx);
 	mlx_loop_hook(mlx.mlx_ptr, &redraw_map, &mlx);
 	mlx_loop(mlx.mlx_ptr);
 	ft_exit(&mlx);
