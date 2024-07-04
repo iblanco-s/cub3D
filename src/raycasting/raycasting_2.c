@@ -6,7 +6,7 @@
 /*   By: jsalaber <jsalaber@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/02 10:45:51 by jsalaber          #+#    #+#             */
-/*   Updated: 2024/07/04 12:31:20 by jsalaber         ###   ########.fr       */
+/*   Updated: 2024/07/04 14:06:25 by jsalaber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,11 +20,11 @@ int	get_rgba(int r, int g, int b, int a)
 void	ft_put_pixel(t_mlx *mlx, int x, int y, int color)
 {
 	int	index;
-	
-	if (x < 0 || x >= WW || y < 0 || y >= WH)
-		return ;
 
-	mlx_pixel_put(mlx->mlx_ptr, mlx->win_ptr, x, y, color);
+	if (x < 0 || x >= WW || y < 0 || y >= WH)
+        return ;
+    index = (y * mlx->size_line) + (x * (mlx->bpp / 8));
+    *(unsigned int *)(mlx->img_data + index) = color;
 }
 
 void	draw_floor_ceiling(t_mlx *mlx, int ray, int d_pix, int u_pix)
@@ -65,7 +65,7 @@ void	draw_wall(t_mlx *mlx, int d_pix, int u_pix, double wall_height)
 		pixel_index = ((int)ip_y * img->width + (int)ip_x) * (img->bpp / 8);
 		pixel_value = *(int *)(img->data + pixel_index);
 		ft_put_pixel(mlx, mlx->ray->index, u_pix,
-				reverse_bytes(pixel_value));
+			reverse_bytes(pixel_value));
 		ip_y += scale;
 		u_pix++;
 	}

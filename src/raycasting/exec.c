@@ -6,7 +6,7 @@
 /*   By: jsalaber <jsalaber@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/28 09:28:47 by jsalaber          #+#    #+#             */
-/*   Updated: 2024/07/04 12:29:56 by jsalaber         ###   ########.fr       */
+/*   Updated: 2024/07/04 14:05:24 by jsalaber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,7 +85,7 @@ int	exec(t_data *dat)
 		return (ft_exit(&mlx), 0);
 	create_window(&mlx);
 	mlx.img_ptr = mlx_new_image(mlx.mlx_ptr, WW, WH);
-    //mlx.img_data = mlx_get_data_addr(mlx.img_ptr, &mlx.bpp, &mlx.size_line, &mlx.endian);
+    mlx.img_data = mlx_get_data_addr(mlx.img_ptr, &mlx.bpp, &mlx.size_line, &mlx.endian);
 	locate_player(&mlx);
 	mlx_hook(mlx.win_ptr, 17, 0, exit_game, &mlx);
 	mlx_key_hook(mlx.win_ptr, &key_pressed, &mlx);
