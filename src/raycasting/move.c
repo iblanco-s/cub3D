@@ -6,7 +6,7 @@
 /*   By: jsalaber <jsalaber@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/01 13:01:50 by jsalaber          #+#    #+#             */
-/*   Updated: 2024/07/04 11:34:28 by jsalaber         ###   ########.fr       */
+/*   Updated: 2024/07/04 14:11:56 by jsalaber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -105,9 +105,9 @@ int	key_pressed(int keycode, void *param)
 	else if (keycode == S)
 		mlx->play->v_move = -1;
 	else if (keycode == LEFT)
-		mlx->play->rotate = 1;
-	else if (keycode == RIGHT)
 		mlx->play->rotate = -1;
+	else if (keycode == RIGHT)
+		mlx->play->rotate = 1;
 	// hanlde_key_release(keycode, mlx);
 	return (0);
 }

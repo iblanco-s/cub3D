@@ -6,7 +6,7 @@
 /*   By: jsalaber <jsalaber@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/02 10:45:51 by jsalaber          #+#    #+#             */
-/*   Updated: 2024/07/04 14:06:25 by jsalaber         ###   ########.fr       */
+/*   Updated: 2024/07/04 14:11:21 by jsalaber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,9 +63,14 @@ void	draw_wall(t_mlx *mlx, int d_pix, int u_pix, double wall_height)
 	while (u_pix < d_pix)
 	{
 		pixel_index = ((int)ip_y * img->width + (int)ip_x) * (img->bpp / 8);
-		pixel_value = *(int *)(img->data + pixel_index);
-		ft_put_pixel(mlx, mlx->ray->index, u_pix,
-			reverse_bytes(pixel_value));
+		if (pixel_index >= 0 && pixel_index < img->width * img->height * (img->bpp / 8))
+		{
+			pixel_value = *(int *)(img->data + pixel_index);
+			ft_put_pixel(mlx, mlx->ray->index, u_pix,
+				reverse_bytes(pixel_value));
+		}
+		else
+			printf("Error: pixel_index fuera de los límites\n");
 		ip_y += scale;
 		u_pix++;
 	}
