@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   load_texture.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jsalaber <jsalaber@student.42.fr>          +#+  +:+       +#+        */
+/*   By: iblanco- <iblanco-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/01 09:31:07 by jsalaber          #+#    #+#             */
-/*   Updated: 2024/07/04 10:09:16 by jsalaber         ###   ########.fr       */
+/*   Updated: 2024/07/04 15:22:18 by iblanco-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ bool	load_texture(t_mlx *mlx, t_text *tx)
 		return (true);
 	img_ptr = mlx_xpm_file_to_image(mlx->mlx_ptr, tx->path, &width, &height);
 	if (!img_ptr)
-	{		//habria que hacer algo mas?
+	{
 		return (ft_error("Error: Texture not found\n"), false);
 	}
 	if (!valid_texture(width, height))
@@ -64,7 +64,7 @@ bool	load_all_textures(t_data *data, t_mlx *mlx)
 		{
 			free_textures(data->texture_list);
 			ft_freemap(data);
-			return (false); //fretextures funciona con el coidgo nuevo?
+			return (false);
 		}
 		cur_texture = cur_texture->next;
 	}
