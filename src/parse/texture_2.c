@@ -6,7 +6,7 @@
 /*   By: jsalaber <jsalaber@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/28 10:12:33 by jsalaber          #+#    #+#             */
-/*   Updated: 2024/07/01 10:13:02 by jsalaber         ###   ########.fr       */
+/*   Updated: 2024/07/04 09:39:14 by jsalaber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,12 +30,12 @@ void	save_color(t_text *text, t_data *data)
 {
 	if (!ft_strncmp(text->value, "F", 2))
 	{
-		data->floor = ft_split(text->value, ',');
+		data->floor = ft_split(text->path, ',');
 		return ;
 	}
 	else if (!ft_strncmp(text->value, "C", 2))
 	{
-		data->ceiling = ft_split(text->value, ',');
+		data->ceiling = ft_split(text->path, ',');
 		return ;
 	}
 }

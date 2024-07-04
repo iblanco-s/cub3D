@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3D.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: codespace <codespace@student.42.fr>        +#+  +:+       +#+        */
+/*   By: jsalaber <jsalaber@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/12 09:55:16 by jsalaber          #+#    #+#             */
-/*   Updated: 2024/07/03 16:14:28 by codespace        ###   ########.fr       */
+/*   Updated: 2024/07/04 10:28:53 by jsalaber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@
 # include <stdbool.h>
 # include <math.h>
 # include <stdint.h>
-#include "mlx_int.h"
+# include "minilibx-linux/mlx_int.h"
 
 # define WW 800
 # define WH 600
@@ -50,23 +50,6 @@ typedef struct s_text
 	struct s_text	*next;
 	t_texture		*texture;
 }	t_text;
-
-// typedef struct s_mlxtex
-// {
-// 	uint32_t	height;
-// 	uint32_t	width;
-// 	uint32_t	bytes;
-// 	uint32_t*	pixel;
-	
-// }	t_mlxtex;
-
-// typedef struct s_tex
-// {
-// 	t_mlxtex	*ea;
-// 	t_mlxtex	*we;
-// 	t_mlxtex	*so;
-// 	t_mlxtex	*no;
-// }	t_tex;
 
 typedef struct s_tex
 {
@@ -206,12 +189,9 @@ void	ft_exit(t_mlx *mlx);
 void	draw_wall_segment(t_mlx *mlx, int ray);
 void	draw_floor_ceiling(t_mlx *mlx, int ray, int d_pix, int u_pix);
 
-//RAYCASTING.c-raycasting_1.c
-// int		raycasting(t_mlx *mlx, t_data data);
-
 //RAYCASTING.c-raycasting_3.c
 int		reverse_bytes(int num);
-float 	normalize_angle(float angle);
+float	normalize_angle(float angle);
 void	*get_texture(t_mlx *mlx, int flag);
 double	get_impact_point(t_img *img, t_mlx *mlx);
 int		unit_circle(float angle, char axis);

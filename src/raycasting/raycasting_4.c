@@ -6,7 +6,7 @@
 /*   By: jsalaber <jsalaber@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/03 10:02:42 by jsalaber          #+#    #+#             */
-/*   Updated: 2024/07/03 10:40:31 by jsalaber         ###   ########.fr       */
+/*   Updated: 2024/07/04 10:17:26 by jsalaber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,10 +21,10 @@ int	hit_wall(t_mlx *mlx, float x, float y)
 		return (0);
 	map_x = (int)(x / TILE_SIZE);
 	map_y = (int)(y / TILE_SIZE);
-
 	if (map_x >= mlx->dat->map_width || map_y >= mlx->dat->map_height)
 		return (0);
-	if (mlx->dat->split_map[map_y] && map_x < (int)ft_strlen(mlx->dat->split_map[map_y]))
+	if (mlx->dat->split_map[map_y]
+		&& map_x < (int)ft_strlen(mlx->dat->split_map[map_y]))
 	{
 		if (mlx->dat->split_map[map_y][map_x] == '1')
 			return (0);
@@ -70,7 +70,8 @@ float	check_h_inter(t_mlx *mlx, float angle)
 	inter_y = ((int)(mlx->play->playr_y / TILE_SIZE)) * TILE_SIZE;
 	flag = check_inter(angle, &inter_y, &step_y, 1);
 	inter_x = mlx->play->playr_x + (inter_y - mlx->play->playr_y) / tan(angle);
-	if ((unit_circle(angle, 'y') && step_x < 0) || (!unit_circle(angle, 'y') && step_x > 0))
+	if ((unit_circle(angle, 'y') && step_x < 0)
+		|| (!unit_circle(angle, 'y') && step_x > 0))
 		step_x *= -1;
 	while (hit_wall(mlx, inter_x, inter_y - flag))
 	{
@@ -99,7 +100,8 @@ float	check_v_inter(t_mlx *mlx, float angle)
 	inter_x = ((int)(mlx->play->playr_x / TILE_SIZE)) * TILE_SIZE;
 	flag = check_inter(angle, &inter_x, &step_x, 0);
 	inter_y = mlx->play->playr_y + (inter_x - mlx->play->playr_x) * tan(angle);
-	if ((unit_circle(angle, 'x') && step_y < 0) || (!unit_circle(angle, 'x') && step_y > 0))
+	if ((unit_circle(angle, 'x') && step_y < 0)
+		|| (!unit_circle(angle, 'x') && step_y > 0))
 		step_y *= -1;
 	while (hit_wall(mlx, inter_x - flag, inter_y))
 	{

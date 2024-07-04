@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   raycasting_3.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: codespace <codespace@student.42.fr>        +#+  +:+       +#+        */
+/*   By: jsalaber <jsalaber@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/02 12:54:07 by jsalaber          #+#    #+#             */
-/*   Updated: 2024/07/03 15:28:01 by codespace        ###   ########.fr       */
+/*   Updated: 2024/07/04 10:15:01 by jsalaber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ int	reverse_bytes(int num)
 	return (a);
 }
 
-float normalize_angle(float angle)
+float	normalize_angle(float angle)
 {
 	if (angle < 0)
 		angle += 2 * PI;
@@ -56,7 +56,7 @@ double	get_impact_point(t_img *img, t_mlx *mlx)
 {
 	double	impact_point;
 	double	temp;
-	
+
 	if (mlx->ray->flag == 1)
 	{
 		temp = mlx->ray->wall_h_x * (img->width / TILE_SIZE);

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exec.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: codespace <codespace@student.42.fr>        +#+  +:+       +#+        */
+/*   By: jsalaber <jsalaber@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/28 09:28:47 by jsalaber          #+#    #+#             */
-/*   Updated: 2024/07/03 15:59:44 by codespace        ###   ########.fr       */
+/*   Updated: 2024/07/04 10:02:09 by jsalaber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,8 +43,9 @@ int	exit_game(void *param)
 	t_mlx	*mlx;
 
 	mlx = (t_mlx *)param;
-	ft_exit(mlx);
+	mlx_destroy_window(mlx->mlx_ptr, mlx->win_ptr);
 	exit(0);
+	return (0);
 }
 
 void	locate_player(t_mlx *mlx)
@@ -84,6 +85,7 @@ int	exec(t_data *dat)
 		return (ft_exit(&mlx), 0);
 	create_window(&mlx);
 	locate_player(&mlx);
+	mlx_hook(mlx.win_ptr, 17, 0, exit_game, &mlx);
 	mlx_key_hook(mlx.win_ptr, &key_pressed, &mlx);
 	mlx_loop_hook(mlx.mlx_ptr, &redraw_map, &mlx);
 	mlx_loop(mlx.mlx_ptr);

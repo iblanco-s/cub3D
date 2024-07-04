@@ -6,7 +6,7 @@
 /*   By: jsalaber <jsalaber@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/01 13:01:50 by jsalaber          #+#    #+#             */
-/*   Updated: 2024/07/02 10:44:03 by jsalaber         ###   ########.fr       */
+/*   Updated: 2024/07/04 10:10:17 by jsalaber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,8 +40,10 @@ void	move_player(t_mlx *mlx, double move_x, double move_y)
 	map_new_x = (new_x / TILE_SIZE);
 	map_new_y = (new_y / TILE_SIZE);
 	if (mlx->dat->split_map[map_new_y][map_new_x] != '1'
-		&& mlx->dat->map_copy[map_new_y][(int)mlx->play->playr_x / TILE_SIZE != '1']
-		&& mlx->dat->map_copy[(int)mlx->play->playr_y / TILE_SIZE][map_new_x] != '1')
+		&& mlx->dat->map_copy[map_new_y][(int)mlx->play->playr_x / \
+		TILE_SIZE != '1']
+		&& mlx->dat->map_copy[(int)mlx->play->playr_y / \
+		TILE_SIZE][map_new_x] != '1')
 	{
 		mlx->play->playr_x = new_x;
 		mlx->play->playr_y = new_y;

@@ -6,7 +6,7 @@
 /*   By: jsalaber <jsalaber@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/28 11:12:32 by jsalaber          #+#    #+#             */
-/*   Updated: 2024/07/02 12:35:48 by jsalaber         ###   ########.fr       */
+/*   Updated: 2024/07/04 10:07:39 by jsalaber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,9 +17,7 @@ int	main(int argc, char **argv)
 	t_data	data;
 
 	data.texture_list = NULL;
-	parse(argc, argv, &data, data.texture_list);
-	// raycasting(data);
-	
+	if (!parse(argc, argv, &data, data.texture_list))
+		return (0);
 	exec(&data);
-	return (0);
 }

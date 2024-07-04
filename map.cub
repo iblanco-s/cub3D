@@ -1,10 +1,10 @@
-NO textures/grass.xpm
-SO textures/grass.xpm
-WE textures/grass.xpm
-EA textures/grass.xpm
+NO textures/north.xpm
+SO textures/south.xpm
+WE textures/west.xpm
+EA textures/east.xpm
 
-C 0,0,60
-F 60,179,110
+C 255,255,255
+F 60,179,255
 
 
         11111111111111111111111111

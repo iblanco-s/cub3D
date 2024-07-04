@@ -2,7 +2,7 @@ NAME	= cub3D
 
 CC 		= gcc
 
-CFLAGS	= -Wall -Wextra -Werror -g3 -fsanitize=address
+CFLAGS	= -Wall -Wextra -Werror -g3 #-fsanitize=address
 
 MLX_FLAG = -lXext -lX11 -lm -lbsd
 
@@ -22,7 +22,6 @@ SRCS	= $(SRC_DIR)/parse/check.c \
 		$(SRC_DIR)/parse/texture_1.c \
 		$(SRC_DIR)/parse/texture_2.c \
 		$(SRC_DIR)/parse/parse.c \
-		$(SRC_DIR)/raycasting/raycasting_1.c \
 		$(SRC_DIR)/raycasting/exec.c \
 		$(SRC_DIR)/raycasting/exit.c \
 		$(SRC_DIR)/raycasting/load_texture.c \
