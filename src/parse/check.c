@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   check.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jsalaber <jsalaber@student.42.fr>          +#+  +:+       +#+        */
+/*   By: iblanco- <iblanco-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/12 10:00:09 by jsalaber          #+#    #+#             */
-/*   Updated: 2024/06/18 13:01:07 by jsalaber         ###   ########.fr       */
+/*   Updated: 2024/07/04 12:22:14 by iblanco-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,8 @@ int	count_texture(t_data *data, int count)
 
 char	*get_map(t_data *data)
 {
+	char	*temp;
+	
 	data->map = ft_strdup("");
 	while (data->line)
 	{
@@ -57,7 +59,9 @@ char	*get_map(t_data *data)
 			ft_error("Error: Empty line\n");
 			return (ft_free_readmap(data->line, data->map, -1), NULL);
 		}
+		temp = data->map;
 		data->map = ft_strjoin(data->map, data->line);
+		free(temp);
 		free(data->line);
 		data->line = get_next_line(data->fd);
 	}

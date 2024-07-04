@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   read_map.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jsalaber <jsalaber@student.42.fr>          +#+  +:+       +#+        */
+/*   By: iblanco- <iblanco-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/12 12:03:55 by jsalaber          #+#    #+#             */
-/*   Updated: 2024/06/28 10:28:06 by jsalaber         ###   ########.fr       */
+/*   Updated: 2024/07/04 12:24:55 by iblanco-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,15 @@ void	ft_free_arr(char **arr)
 	free(arr);
 }
 
+char	*ft_free_and_join(char *str1, char *str2)
+{
+	char	*temp;
+
+	temp = ft_strjoin(str1, str2);
+	free(str1);
+	return (temp);
+}
+
 int	read_map(char *argv, t_data *data, int *count)
 {
 	data->fd = open(argv, O_RDONLY);
@@ -48,7 +57,7 @@ int	read_map(char *argv, t_data *data, int *count)
 	{
 		if (check_textures(data->line))
 		{
-			data->texture = ft_strjoin(data->texture, data->line);
+			data->texture = ft_free_and_join(data->texture, data->line);
 			(*count)++;
 		}
 		free(data->line);
