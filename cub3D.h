@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3D.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jsalaber <jsalaber@student.42.fr>          +#+  +:+       +#+        */
+/*   By: codespace <codespace@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/12 09:55:16 by jsalaber          #+#    #+#             */
-/*   Updated: 2024/07/03 10:37:30 by jsalaber         ###   ########.fr       */
+/*   Updated: 2024/07/03 16:14:28 by codespace        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@
 # include <stdbool.h>
 # include <math.h>
 # include <stdint.h>
+#include "mlx_int.h"
 
 # define WW 800
 # define WH 600
@@ -50,21 +51,29 @@ typedef struct s_text
 	t_texture		*texture;
 }	t_text;
 
-typedef struct s_mlxtex
-{
-	uint32_t	height;
-	uint32_t	width;
-	uint32_t	bytes;
-	uint32_t*	pixel;
+// typedef struct s_mlxtex
+// {
+// 	uint32_t	height;
+// 	uint32_t	width;
+// 	uint32_t	bytes;
+// 	uint32_t*	pixel;
 	
-}	t_mlxtex;
+// }	t_mlxtex;
+
+// typedef struct s_tex
+// {
+// 	t_mlxtex	*ea;
+// 	t_mlxtex	*we;
+// 	t_mlxtex	*so;
+// 	t_mlxtex	*no;
+// }	t_tex;
 
 typedef struct s_tex
 {
-	t_mlxtex	*ea;
-	t_mlxtex	*we;
-	t_mlxtex	*so;
-	t_mlxtex	*no;
+	t_img	*ea;
+	t_img	*we;
+	t_img	*so;
+	t_img	*no;
 }	t_tex;
 
 typedef struct s_data
@@ -182,7 +191,7 @@ void	create_window(t_mlx *mlx);
 int		exec(t_data *dat);
 
 //RAYCASTING-load_texture.c
-bool	load_texture(t_texture *texture, void *mlx_ptr, t_text *list_texture);
+bool	load_texture(t_mlx *mlx, t_text *tx);
 bool	load_all_textures(t_data *data, t_mlx *mlx);
 
 //RAYCASTING-move.c
@@ -204,7 +213,7 @@ void	draw_floor_ceiling(t_mlx *mlx, int ray, int d_pix, int u_pix);
 int		reverse_bytes(int num);
 float 	normalize_angle(float angle);
 void	*get_texture(t_mlx *mlx, int flag);
-double	get_impact_point(t_mlxtex *tex, t_mlx *mlx);
+double	get_impact_point(t_img *img, t_mlx *mlx);
 int		unit_circle(float angle, char axis);
 
 //RAYCASTING.c-raycasting_4.c
