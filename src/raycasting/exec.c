@@ -6,7 +6,7 @@
 /*   By: jsalaber <jsalaber@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/28 09:28:47 by jsalaber          #+#    #+#             */
-/*   Updated: 2024/07/04 10:02:09 by jsalaber         ###   ########.fr       */
+/*   Updated: 2024/07/04 13:31:40 by jsalaber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,14 +24,14 @@ int	redraw_map(void *mlx_t)
 	t_mlx	*mlx;
 
 	mlx = (t_mlx *)mlx_t;
-	if (mlx->img_ptr)
-		mlx_destroy_image(mlx->mlx_ptr, mlx->img_ptr);
-	mlx->img_ptr = mlx_new_image(mlx->mlx_ptr, WW, WH);
-	if (!mlx->img_ptr)
-	{
-		printf("Error: image not created\n");
-		return (ft_exit(mlx), 1);
-	}
+	// if (mlx->img_ptr)
+	// 	mlx_destroy_image(mlx->mlx_ptr, mlx->img_ptr);
+	// mlx->img_ptr = mlx_new_image(mlx->mlx_ptr, WW, WH);
+	// if (!mlx->img_ptr)
+	// {
+	// 	printf("Error: image not created\n");
+	// 	return (ft_exit(mlx), 1);
+	// }
 	execute_player_move(mlx, 0, 0);
 	raycasting(mlx);
 	mlx_put_image_to_window(mlx->mlx_ptr, mlx->win_ptr, mlx->img_ptr, 0, 0);
@@ -84,6 +84,8 @@ int	exec(t_data *dat)
 	if (!load_all_textures(dat, &mlx))
 		return (ft_exit(&mlx), 0);
 	create_window(&mlx);
+	mlx.img_ptr = mlx_new_image(mlx.mlx_ptr, WW, WH);
+    mlx.img_data = mlx_get_data_addr(mlx.img_ptr, &mlx.bpp, &mlx.size_line, &mlx.endian);
 	locate_player(&mlx);
 	mlx_hook(mlx.win_ptr, 17, 0, exit_game, &mlx);
 	mlx_key_hook(mlx.win_ptr, &key_pressed, &mlx);

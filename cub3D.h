@@ -6,7 +6,7 @@
 /*   By: jsalaber <jsalaber@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/12 09:55:16 by jsalaber          #+#    #+#             */
-/*   Updated: 2024/07/04 10:28:53 by jsalaber         ###   ########.fr       */
+/*   Updated: 2024/07/04 13:20:25 by jsalaber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -108,6 +108,10 @@ typedef struct s_mlx
 	void		*mlx_ptr;
 	void		*win_ptr;
 	void		*img_ptr;
+	char		*img_data;
+    int			bpp;
+    int			size_line;
+    int			endian;
 	t_data		*dat;
 	t_player	*play;
 	t_ray		*ray;

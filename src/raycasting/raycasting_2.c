@@ -6,7 +6,7 @@
 /*   By: jsalaber <jsalaber@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/02 10:45:51 by jsalaber          #+#    #+#             */
-/*   Updated: 2024/07/04 10:31:35 by jsalaber         ###   ########.fr       */
+/*   Updated: 2024/07/04 13:30:16 by jsalaber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,20 +14,16 @@
 
 int	get_rgba(int r, int g, int b, int a)
 {
-	return ((r * 0x1000000) + (g * 0x10000) + (b * 0x100) + a);
+	return ((r << 24) + (g << 16) + (b << 8) + a);
 }
 
 void	ft_put_pixel(t_mlx *mlx, int x, int y, int color)
 {
-	if (x < 0)
-		return ;
-	else if (x >= WW)
-		return ;
-	if (y < 0)
-		return ;
-	else if (y >= WH)
-		return ;
-	mlx_pixel_put(mlx->mlx_ptr, mlx->win_ptr, x, y, color);
+	// int	index;
+
+	if (x < 0 || x >= WW || y < 0 || y >= WH)
+        return ;
+    mlx_pixel_put(mlx->mlx_ptr, mlx->win_ptr, x, y, color);
 }
 
 void	draw_floor_ceiling(t_mlx *mlx, int ray, int d_pix, int u_pix)

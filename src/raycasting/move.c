@@ -6,7 +6,7 @@
 /*   By: jsalaber <jsalaber@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/01 13:01:50 by jsalaber          #+#    #+#             */
-/*   Updated: 2024/07/04 10:10:17 by jsalaber         ###   ########.fr       */
+/*   Updated: 2024/07/04 13:49:14 by jsalaber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,42 +56,39 @@ void	execute_player_move(t_mlx *mlx, double move_x, double move_y)
 		rotate_player(mlx, true);
 	if (mlx->play->rotate == -1)
 		rotate_player(mlx, false);
-	if (mlx->play->h_move == 1)
+	if (mlx->play->h_move != 0 || mlx->play->v_move != 0)
 	{
-		move_x = -sin(mlx->play->playr_dir) * MOVE_SPEED;
-		move_y = cos(mlx->play->playr_dir) * MOVE_SPEED;
+		if (mlx->play->h_move == 1)
+		{
+			move_x = -sin(mlx->play->playr_dir) * MOVE_SPEED;
+			move_y = cos(mlx->play->playr_dir) * MOVE_SPEED;
+		}
+		if (mlx->play->h_move == -1)
+		{
+			move_x = sin(mlx->play->playr_dir) * MOVE_SPEED;
+			move_y = -cos(mlx->play->playr_dir) * MOVE_SPEED;
+		}
+		if (mlx->play->v_move == 1)
+		{
+			move_x = cos(mlx->play->playr_dir) * MOVE_SPEED;
+			move_y = sin(mlx->play->playr_dir) * MOVE_SPEED;
+		}
+		if (mlx->play->v_move == -1)
+		{
+			move_x = -cos(mlx->play->playr_dir) * MOVE_SPEED;
+			move_y = -sin(mlx->play->playr_dir) * MOVE_SPEED;
+		}
+		move_player(mlx, move_x, move_y);
 	}
-	if (mlx->play->h_move == -1)
-	{
-		move_x = sin(mlx->play->playr_dir) * MOVE_SPEED;
-		move_y = -cos(mlx->play->playr_dir) * MOVE_SPEED;
-	}
-	if (mlx->play->v_move == 1)
-	{
-		move_x = cos(mlx->play->playr_dir) * MOVE_SPEED;
-		move_y = sin(mlx->play->playr_dir) * MOVE_SPEED;
-	}
-	if (mlx->play->v_move == -1)
-	{
-		move_x = -cos(mlx->play->playr_dir) * MOVE_SPEED;
-		move_y = -sin(mlx->play->playr_dir) * MOVE_SPEED;
-	}
-	move_player(mlx, move_x, move_y);
 }
 
 void	hanlde_key_release(int keycode, t_mlx *mlx)
 {
-	if (keycode == D)
+	if (keycode == D || keycode == A)
 		mlx->play->h_move = 0;
-	else if (keycode == A)
-		mlx->play->h_move = 0;
-	else if (keycode == W)
+	else if (keycode == W || keycode == S)
 		mlx->play->v_move = 0;
-	else if (keycode == S)
-		mlx->play->v_move = 0;
-	else if (keycode == LEFT)
-		mlx->play->rotate = 0;
-	else if (keycode == RIGHT)
+	else if (keycode == LEFT || keycode == RIGHT)
 		mlx->play->rotate = 0;
 }
 
@@ -114,6 +111,6 @@ int	key_pressed(int keycode, void *param)
 		mlx->play->rotate = 1;
 	else if (keycode == RIGHT)
 		mlx->play->rotate = -1;
-	hanlde_key_release(keycode, mlx);
+	// hanlde_key_release(keycode, mlx);
 	return (0);
 }
