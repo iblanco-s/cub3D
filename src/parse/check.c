@@ -6,7 +6,7 @@
 /*   By: iblanco- <iblanco-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/12 10:00:09 by jsalaber          #+#    #+#             */
-/*   Updated: 2024/07/04 12:22:14 by iblanco-         ###   ########.fr       */
+/*   Updated: 2024/07/04 15:16:50 by iblanco-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ int	count_texture(t_data *data, int count)
 char	*get_map(t_data *data)
 {
 	char	*temp;
-	
+
 	data->map = ft_strdup("");
 	while (data->line)
 	{
