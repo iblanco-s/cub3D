@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   move.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: iblanco- <iblanco-@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jsalaber <jsalaber@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/01 13:01:50 by jsalaber          #+#    #+#             */
-/*   Updated: 2024/07/04 16:23:20 by iblanco-         ###   ########.fr       */
+/*   Updated: 2024/07/05 12:57:12 by jsalaber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,8 +35,8 @@ void	move_player(t_mlx *mlx, double move_x, double move_y)
 	int	map_new_x;
 	int	map_new_y;
 
-	new_x = (int)(mlx->play->playr_x + move_x + 0.5);
-	new_y = (int)(mlx->play->playr_y + move_y + 0.5);
+	new_x = (int)(mlx->play->playr_x + move_x);
+	new_y = (int)(mlx->play->playr_y + move_y);
 	map_new_x = (new_x / TILE_SIZE);
 	map_new_y = (new_y / TILE_SIZE);
 	if (mlx->dat->split_map[map_new_y][map_new_x] != '1'
@@ -61,7 +61,7 @@ void	execute_player_move(t_mlx *mlx, double move_x, double move_y)
 		move_x = -sin(mlx->play->playr_dir) * MOVE_SPEED;
 		move_y = cos(mlx->play->playr_dir) * MOVE_SPEED;
 	}
-	if (mlx->play->h_move == -1)
+	else if (mlx->play->h_move == -1)
 	{
 		move_x = sin(mlx->play->playr_dir) * MOVE_SPEED;
 		move_y = -cos(mlx->play->playr_dir) * MOVE_SPEED;
@@ -71,17 +71,19 @@ void	execute_player_move(t_mlx *mlx, double move_x, double move_y)
 		move_x = cos(mlx->play->playr_dir) * MOVE_SPEED;
 		move_y = sin(mlx->play->playr_dir) * MOVE_SPEED;
 	}
-	if (mlx->play->v_move == -1)
+	else if (mlx->play->v_move == -1)
 	{
 		move_x = -cos(mlx->play->playr_dir) * MOVE_SPEED;
 		move_y = -sin(mlx->play->playr_dir) * MOVE_SPEED;
 	}
-	move_player(mlx, move_x, move_y);
+	if (move_x != 0 || move_y != 0)
+	{
+		move_player(mlx, move_x, move_y);
+	}
 }
 
 int	hanlde_key_release(int keycode, t_mlx *mlx)
 {
-	printf("keycode: %d\n", keycode);
 	if (keycode == D || keycode == A)
 		mlx->play->h_move = 0;
 	else if (keycode == W || keycode == S)
@@ -96,6 +98,8 @@ int	key_pressed(int keycode, void *param)
 	t_mlx	*mlx;
 
 	mlx = (t_mlx *)param;
+	mlx->play->h_move = 0;
+	mlx->play->v_move = 0;
 	if (keycode == ESC)
 		ft_exit(mlx);
 	else if (keycode == D)
