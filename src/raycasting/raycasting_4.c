@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   raycasting_4.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: iblanco- <iblanco-@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jsalaber <jsalaber@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/03 10:02:42 by jsalaber          #+#    #+#             */
-/*   Updated: 2024/07/04 16:22:16 by iblanco-         ###   ########.fr       */
+/*   Updated: 2024/07/09 09:58:27 by jsalaber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,8 +62,6 @@ float	check_h_inter(t_mlx *mlx, float angle)
 	float	step_x;
 	float	step_y;
 	int		flag;
-	float	dx;
-	float	dy;
 
 	step_y = TILE_SIZE;
 	step_x = TILE_SIZE / tan(angle);
@@ -80,9 +78,8 @@ float	check_h_inter(t_mlx *mlx, float angle)
 	}
 	mlx->ray->wall_h_x = inter_x;
 	mlx->ray->wall_h_y = inter_y;
-	dx = inter_x - mlx->play->playr_x;
-	dy = inter_y - mlx->play->playr_y;
-	return (sqrt(dx * dx + dy * dy));
+	return (sqrt(pow(inter_x - mlx->play->playr_x, 2)
+			+ pow(inter_y - mlx->play->playr_y, 2)));
 }
 
 float	check_v_inter(t_mlx *mlx, float angle)
@@ -92,8 +89,6 @@ float	check_v_inter(t_mlx *mlx, float angle)
 	float	step_x;
 	float	step_y;
 	int		flag;
-	float	dx;
-	float	dy;
 
 	step_x = TILE_SIZE;
 	step_y = TILE_SIZE * tan(angle);
@@ -110,9 +105,8 @@ float	check_v_inter(t_mlx *mlx, float angle)
 	}
 	mlx->ray->wall_v_x = inter_x;
 	mlx->ray->wall_v_y = inter_y;
-	dx = inter_x - mlx->play->playr_x;
-	dy = inter_y - mlx->play->playr_y;
-	return (sqrt(dx * dx + dy * dy));
+	return (sqrt(pow(inter_x - mlx->play->playr_x, 2)
+			+ pow(inter_y - mlx->play->playr_y, 2)));
 }
 
 void	raycasting(t_mlx *mlx)

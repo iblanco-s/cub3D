@@ -6,7 +6,7 @@
 /*   By: jsalaber <jsalaber@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/02 12:54:07 by jsalaber          #+#    #+#             */
-/*   Updated: 2024/07/04 10:15:01 by jsalaber         ###   ########.fr       */
+/*   Updated: 2024/07/09 10:02:30 by jsalaber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ float	normalize_angle(float angle)
 	return (angle);
 }
 
-void	*get_texture(t_mlx *mlx, int flag)
+mlx_texture_t	*get_texture(t_mlx *mlx, int flag)
 {
 	mlx->ray->ray_angle = normalize_angle(mlx->ray->ray_angle);
 	if (flag == 0)
@@ -52,20 +52,19 @@ void	*get_texture(t_mlx *mlx, int flag)
 	}
 }
 
-double	get_impact_point(t_img *img, t_mlx *mlx)
+double	get_impact_point(mlx_texture_t *texture, t_mlx *mlx)
 {
 	double	impact_point;
-	double	temp;
 
 	if (mlx->ray->flag == 1)
 	{
-		temp = mlx->ray->wall_h_x * (img->width / TILE_SIZE);
-		impact_point = temp - (int)(temp / img->width) * img->width;
+		impact_point = (int)fmodf((mlx->ray->wall_h_x
+			* (texture->width / TILE_SIZE)), texture->width);
 	}
 	else
 	{
-		temp = mlx->ray->wall_v_y * (img->width / TILE_SIZE);
-		impact_point = temp - (int)(temp / img->width) * img->width;
+		impact_point = (int)fmodf((mlx->ray->wall_v_y
+			* (texture->width / TILE_SIZE)), texture->width);
 	}
 	return (impact_point);
 }

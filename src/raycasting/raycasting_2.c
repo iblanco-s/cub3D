@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   raycasting_2.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: iblanco- <iblanco-@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jsalaber <jsalaber@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/02 10:45:51 by jsalaber          #+#    #+#             */
-/*   Updated: 2024/07/04 16:09:12 by iblanco-         ###   ########.fr       */
+/*   Updated: 2024/07/09 10:26:48 by jsalaber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,12 +19,9 @@ int	get_rgba(int r, int g, int b, int a)
 
 void	ft_put_pixel(t_mlx *mlx, int x, int y, int color)
 {
-	int	index;
-
 	if (x < 0 || x >= WW || y < 0 || y >= WH)
         return ;
-    index = (y * mlx->size_line) + (x * (mlx->bpp / 8));
-    *(unsigned int *)(mlx->img_data + index) = color;
+    mlx_put_pixel(mlx->img, x, y, color);
 }
 
 void	draw_floor_ceiling(t_mlx *mlx, int ray, int d_pix, int u_pix)
@@ -46,45 +43,25 @@ void	draw_floor_ceiling(t_mlx *mlx, int ray, int d_pix, int u_pix)
 
 void	draw_wall(t_mlx *mlx, int d_pix, int u_pix, double wall_height)
 {
-	double		ip_x;
-	double		ip_y;
-	t_img		*img;
-	double		scale;
-	int			pixel_index;
-	int			pixel_value;
+	double			ip_x;
+	double			ip_y;
+	double			scale;
+	mlx_texture_t	*texture;
+	uint32_t		*pix;
 
-	img = get_texture(mlx, mlx->ray->flag);
-	scale = (double)img->height / wall_height;
-
-
-    scale = (double)img->height / wall_height;
-    ip_x = get_impact_point(img, mlx);
-
-    // Ensure ip_x is within bounds
-    if (ip_x < 0) ip_x = 0;
-    if (ip_x >= img->width) ip_x = img->width - 1;
-    int screen_y = u_pix;
-
-	while (screen_y < d_pix && screen_y < WH)
+	texture = get_texture(mlx, mlx->ray->flag);
+	pix = (uint32_t *)texture->pixels;
+    scale = (double)texture->height / wall_height;
+    ip_x = get_impact_point(texture, mlx);
+	ip_y = u_pix - (WH / 2) + (wall_height / 2) * scale;
+    if (ip_x < 0)
+		ip_x = 0;
+	while (u_pix < d_pix)
 	{
-		
-       	// Calculate texture y-coordinate
-        ip_y = (int)((screen_y - u_pix) * scale);
-        
-        // Ensure ip_y is within bounds
-        if (ip_y < 0) ip_y = 0;
-        if (ip_y >= img->height) ip_y = img->height - 1;
-
-		pixel_index = (ip_y * img->width + (int)ip_x) * (img->bpp / 8);
- 		if (pixel_index >= 0 && pixel_index < (img->width * img->height * (img->bpp / 8)))
-		{
-			pixel_value = *(int *)(img->data + pixel_index);
-			ft_put_pixel(mlx, mlx->ray->index, screen_y,
-				reverse_bytes(pixel_value));
-		}
-		else
-			printf("Error: pixel_index fuera de los límites\n");
-		screen_y++;
+		ft_put_pixel(mlx, mlx->ray->index, u_pix,
+			reverse_bytes(pix[(int)ip_y * texture->width + (int)ip_x]));
+		ip_y += scale;
+		u_pix++;
 	}
 }
 

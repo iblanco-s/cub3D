@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   load_texture.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: iblanco- <iblanco-@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jsalaber <jsalaber@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/01 09:31:07 by jsalaber          #+#    #+#             */
-/*   Updated: 2024/07/04 15:22:18 by iblanco-         ###   ########.fr       */
+/*   Updated: 2024/07/09 09:40:44 by jsalaber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,51 +22,48 @@ bool	valid_texture(int width, int height)
 	return (true);
 }
 
-bool	load_texture(t_mlx *mlx, t_text *tx)
-{
-	int		width;
-	int		height;
-	t_img	*img_ptr;
+int	load_texture(t_text *text)
 
-	if (!ft_strncmp(tx->value, "C", 1) || !ft_strncmp(tx->value, "F", 1))
-		return (true);
-	img_ptr = mlx_xpm_file_to_image(mlx->mlx_ptr, tx->path, &width, &height);
-	if (!img_ptr)
+{
+	t_text			*temp;
+	mlx_texture_t	*texture;
+
+	temp = text;
+	while (temp)
 	{
-		return (ft_error("Error: Texture not found\n"), false);
+		if (!ft_strncmp(temp->value, "NO", 2) || !ft_strncmp(temp->value, "EA", 2)
+			|| !ft_strncmp(temp->value, "SO", 2) || !ft_strncmp(temp->value, "WE", 2))
+			{
+				texture = mlx_load_png(temp->path);
+				if (!texture)
+					return (0);
+				mlx_delete_texture(texture);
+			}
+		temp = temp->next;
 	}
-	if (!valid_texture(width, height))
-	{
-		mlx_destroy_image(mlx->mlx_ptr, img_ptr);
-		return (false);
-	}
-	if (!ft_strncmp(tx->value, "NO", 2))
-		mlx->tex->no = img_ptr;
-	else if (!ft_strncmp(tx->value, "SO", 2))
-		mlx->tex->so = img_ptr;
-	else if (!ft_strncmp(tx->value, "WE", 2))
-		mlx->tex->we = img_ptr;
-	else if (!ft_strncmp(tx->value, "EA", 2))
-		mlx->tex->ea = img_ptr;
-	return (true);
+	return (1);
 }
 
-bool	load_all_textures(t_data *data, t_mlx *mlx)
+int	load_all_textures(t_tex *tex, t_text *texture)
 {
-	t_text	*cur_texture;
+	t_text	*temp;
 
-	cur_texture = data->texture_list;
-	while (cur_texture)
+	temp = texture;
+	if (!valid_texture(TILE_SIZE, TILE_SIZE))
+		return (0);
+	if (!load_texture(texture))
+		return (0);
+	while (temp)
 	{
-		if (cur_texture->texture == NULL)
-			cur_texture->texture = mlx->texture;
-		if (!load_texture(mlx, cur_texture))
-		{
-			free_textures(data->texture_list);
-			ft_freemap(data);
-			return (false);
-		}
-		cur_texture = cur_texture->next;
+		if (!ft_strncmp(temp->value, "NO", 2))
+			tex->no = mlx_load_png(temp->path);
+		else if (!ft_strncmp(temp->value, "SO", 2))
+			tex->so = mlx_load_png(temp->path);
+		else if (!ft_strncmp(temp->value, "WE", 2))
+			tex->we = mlx_load_png(temp->path);
+		else if (!ft_strncmp(temp->value, "EA", 2))
+			tex->ea = mlx_load_png(temp->path);
+		temp = temp->next;
 	}
-	return (true);
+	return (1);
 }

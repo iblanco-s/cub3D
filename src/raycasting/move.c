@@ -6,7 +6,7 @@
 /*   By: jsalaber <jsalaber@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/01 13:01:50 by jsalaber          #+#    #+#             */
-/*   Updated: 2024/07/05 12:57:12 by jsalaber         ###   ########.fr       */
+/*   Updated: 2024/07/09 10:26:00 by jsalaber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,43 +76,44 @@ void	execute_player_move(t_mlx *mlx, double move_x, double move_y)
 		move_x = -cos(mlx->play->playr_dir) * MOVE_SPEED;
 		move_y = -sin(mlx->play->playr_dir) * MOVE_SPEED;
 	}
-	if (move_x != 0 || move_y != 0)
-	{
-		move_player(mlx, move_x, move_y);
-	}
+	move_player(mlx, move_x, move_y);
 }
 
-int	hanlde_key_release(int keycode, t_mlx *mlx)
+void	hanlde_key_release(mlx_key_data_t keycode, t_mlx *mlx)
 {
-	if (keycode == D || keycode == A)
+	if (keycode.key == MLX_KEY_D && keycode.action == MLX_RELEASE)
 		mlx->play->h_move = 0;
-	else if (keycode == W || keycode == S)
+	else if (keycode.key == MLX_KEY_A && keycode.action == MLX_RELEASE)
+		mlx->play->h_move = 0;
+	else if (keycode.key == MLX_KEY_W && keycode.action == MLX_RELEASE)
 		mlx->play->v_move = 0;
-	else if (keycode == LEFT || keycode == RIGHT)
+	else if (keycode.key == MLX_KEY_S && keycode.action == MLX_RELEASE)
+		mlx->play->v_move = 0;
+	else if (keycode.key == MLX_KEY_LEFT && keycode.action == MLX_RELEASE)
 		mlx->play->rotate = 0;
-	return (0);
+	else if (keycode.key == MLX_KEY_RIGHT && keycode.action == MLX_RELEASE)
+		mlx->play->rotate = 0;
 }
 
-int	key_pressed(int keycode, void *param)
+void	key_pressed(mlx_key_data_t keycode, void *param)
 {
 	t_mlx	*mlx;
 
-	mlx = (t_mlx *)param;
-	mlx->play->h_move = 0;
-	mlx->play->v_move = 0;
-	if (keycode == ESC)
+	mlx = param;
+	if (keycode.key == MLX_KEY_ESCAPE && (keycode.action == MLX_PRESS
+		|| keycode.action == MLX_REPEAT))
 		ft_exit(mlx);
-	else if (keycode == D)
+	else if (keycode.key == MLX_KEY_D && keycode.action == MLX_PRESS)
 		mlx->play->h_move = 1;
-	else if (keycode == A)
+	else if (keycode.key == MLX_KEY_A && keycode.action == MLX_PRESS)
 		mlx->play->h_move = -1;
-	else if (keycode == W)
+	else if (keycode.key == MLX_KEY_W && keycode.action == MLX_PRESS)
 		mlx->play->v_move = 1;
-	else if (keycode == S)
+	else if (keycode.key == MLX_KEY_S && keycode.action == MLX_PRESS)
 		mlx->play->v_move = -1;
-	else if (keycode == LEFT)
+	else if (keycode.key == MLX_KEY_LEFT && keycode.action == MLX_PRESS)
 		mlx->play->rotate = -1;
-	else if (keycode == RIGHT)
+	else if (keycode.key == MLX_KEY_RIGHT && keycode.action == MLX_PRESS)
 		mlx->play->rotate = 1;
-	return (0);
+	hanlde_key_release(keycode, mlx);
 }

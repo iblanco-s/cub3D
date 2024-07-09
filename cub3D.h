@@ -6,7 +6,7 @@
 /*   By: jsalaber <jsalaber@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/12 09:55:16 by jsalaber          #+#    #+#             */
-/*   Updated: 2024/07/05 12:48:41 by jsalaber         ###   ########.fr       */
+/*   Updated: 2024/07/09 10:29:55 by jsalaber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,12 +15,11 @@
 
 # include "libft/libft.h"
 # include "libft/get_next_line.h"
-# include "minilibx-linux/mlx.h"
+# include "MLX42/MLX42.h"
 # include <unistd.h>
 # include <stdbool.h>
 # include <math.h>
 # include <stdint.h>
-# include "minilibx-linux/mlx_int.h"
 
 # define WW 800
 # define WH 600
@@ -28,35 +27,21 @@
 # define TILE_SIZE 64
 # define PI 3.14159265358979323846
 # define ROTATION_SPEED 0.042
-# define MOVE_SPEED 0.05
-# define ESC 65307
-# define W   119
-# define A   97
-# define S   115
-# define D   100
-# define LEFT 65361
-# define RIGHT 65363
-
-typedef struct s_texture
-{
-	void	*img;
-	bool	created;
-}	t_texture;
+# define MOVE_SPEED 0.5
 
 typedef struct s_text
 {
 	char			*value;
 	char			*path;
 	struct s_text	*next;
-	t_texture		*texture;
 }	t_text;
 
 typedef struct s_tex
 {
-	t_img	*ea;
-	t_img	*we;
-	t_img	*so;
-	t_img	*no;
+	mlx_texture_t	*ea;
+	mlx_texture_t	*we;
+	mlx_texture_t	*so;
+	mlx_texture_t	*no;
 }	t_tex;
 
 typedef struct s_data
@@ -104,18 +89,11 @@ typedef struct s_ray
 
 typedef struct s_mlx
 {
-	void		*mlx;
-	void		*mlx_ptr;
-	void		*win_ptr;
-	void		*img_ptr;
-	char		*img_data;
-	int			size_line;
-	int			bpp;
-	int			endian;
+	mlx_t		*mlx_ptr;
+	mlx_image_t	*img;
 	t_data		*dat;
 	t_player	*play;
 	t_ray		*ray;
-	t_texture	*texture;
 	t_text		*mlx_texture;
 	t_tex		*tex;
 }	t_mlx;
@@ -174,17 +152,14 @@ void	get_lines_column(t_data *data);
 int		parse(int argc, char **argv, t_data *data, t_text *tx);
 
 //RAYCASTING-exec.c
-void	create_window(t_mlx *mlx);
 int		exec(t_data *dat);
 
 //RAYCASTING-load_texture.c
-bool	load_texture(t_mlx *mlx, t_text *tx);
-bool	load_all_textures(t_data *data, t_mlx *mlx);
+int		load_all_textures(t_tex *tex, t_text *texture);
 
 //RAYCASTING-move.c
 void	execute_player_move(t_mlx *mlx, double move_x, double move_y);
-int		key_pressed(int keycode, void *param);
-int		hanlde_key_release(int keycode, t_mlx *mlx);
+void	key_pressed(mlx_key_data_t keycode, void *param);
 
 //RAYCASTING-exit.c
 void	free_textures(t_text *texture_list);
@@ -192,14 +167,13 @@ void	ft_exit(t_mlx *mlx);
 
 //RAYCASTING.c-raycasting_2.c
 void	draw_wall_segment(t_mlx *mlx, int ray);
-void	draw_floor_ceiling(t_mlx *mlx, int ray, int d_pix, int u_pix);
 
 //RAYCASTING.c-raycasting_3.c
-int		reverse_bytes(int num);
-float	normalize_angle(float angle);
-void	*get_texture(t_mlx *mlx, int flag);
-double	get_impact_point(t_img *img, t_mlx *mlx);
-int		unit_circle(float angle, char axis);
+int				reverse_bytes(int num);
+float			normalize_angle(float angle);
+mlx_texture_t	*get_texture(t_mlx *mlx, int flag);
+double			get_impact_point(mlx_texture_t *texture, t_mlx *mlx);
+int				unit_circle(float angle, char axis);
 
 //RAYCASTING.c-raycasting_4.c
 void	raycasting(t_mlx *mlx);
