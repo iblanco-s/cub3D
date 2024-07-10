@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   raycasting_2.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jsalaber <jsalaber@student.42.fr>          +#+  +:+       +#+        */
+/*   By: iblanco- <iblanco-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/02 10:45:51 by jsalaber          #+#    #+#             */
-/*   Updated: 2024/07/09 10:26:48 by jsalaber         ###   ########.fr       */
+/*   Updated: 2024/07/10 13:42:27 by iblanco-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,9 +53,9 @@ void	draw_wall(t_mlx *mlx, int d_pix, int u_pix, double wall_height)
 	pix = (uint32_t *)texture->pixels;
     scale = (double)texture->height / wall_height;
     ip_x = get_impact_point(texture, mlx);
-	ip_y = u_pix - (WH / 2) + (wall_height / 2) * scale;
-    if (ip_x < 0)
-		ip_x = 0;
+	ip_y = (u_pix - (WH / 2) + (wall_height / 2)) * scale;
+	if (ip_y < 0)
+		ip_y = 0;
 	while (u_pix < d_pix)
 	{
 		ft_put_pixel(mlx, mlx->ray->index, u_pix,
@@ -63,6 +63,8 @@ void	draw_wall(t_mlx *mlx, int d_pix, int u_pix, double wall_height)
 		ip_y += scale;
 		u_pix++;
 	}
+	//debug_print("Drawing wall: ray = %d, wall height = %f, texture = %p\n", mlx->ray->index, wall_height, texture);
+    //debug_print("Texture coordinates: x = %f, y starts at %f\n", ip_x, ip_y);
 }
 
 void	draw_wall_segment(t_mlx *mlx, int ray)
@@ -71,7 +73,7 @@ void	draw_wall_segment(t_mlx *mlx, int ray)
 	double	d_pix;
 	double	u_pix;
 
-	mlx->ray->distance *= cos(mlx->ray->ray_angle - mlx->play->playr_dir);
+	mlx->ray->distance *= cos(normalize_angle(mlx->ray->ray_angle - mlx->play->playr_dir));
 	wall_height = (TILE_SIZE / mlx->ray->distance) * (WW / 2) / \
 		tan(mlx->play->fov_rad / 2);
 	d_pix = (WH / 2) + (wall_height / 2);
@@ -81,6 +83,7 @@ void	draw_wall_segment(t_mlx *mlx, int ray)
 	if (u_pix < 0)
 		u_pix = 0;
 	mlx->ray->index = ray;
+	//debug_print("wall height = %f\n", wall_height);
 	draw_wall(mlx, d_pix, u_pix, wall_height);
 	draw_floor_ceiling(mlx, ray, d_pix, u_pix);
 }

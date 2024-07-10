@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   move.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jsalaber <jsalaber@student.42.fr>          +#+  +:+       +#+        */
+/*   By: iblanco- <iblanco-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/01 13:01:50 by jsalaber          #+#    #+#             */
-/*   Updated: 2024/07/09 10:26:00 by jsalaber         ###   ########.fr       */
+/*   Updated: 2024/07/10 12:29:58 by iblanco-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,14 +40,18 @@ void	move_player(t_mlx *mlx, double move_x, double move_y)
 	map_new_x = (new_x / TILE_SIZE);
 	map_new_y = (new_y / TILE_SIZE);
 	if (mlx->dat->split_map[map_new_y][map_new_x] != '1'
-		&& mlx->dat->map_copy[map_new_y][(int)mlx->play->playr_x / \
+		/*&& mlx->dat->map_copy[map_new_y][(int)mlx->play->playr_x / \
 		TILE_SIZE != '1']
 		&& mlx->dat->map_copy[(int)mlx->play->playr_y / \
-		TILE_SIZE][map_new_x] != '1')
+		TILE_SIZE][map_new_x] != '1'*/)
 	{
 		mlx->play->playr_x = new_x;
 		mlx->play->playr_y = new_y;
 	}
+	debug_print("map_new_x: %d\n", map_new_x);
+	debug_print("map_new_y: %d\n", map_new_y);
+	debug_print("new_x: %d\n", new_x);
+	debug_print("new_y: %d\n", new_y);
 }
 
 void	execute_player_move(t_mlx *mlx, double move_x, double move_y)
@@ -77,6 +81,8 @@ void	execute_player_move(t_mlx *mlx, double move_x, double move_y)
 		move_y = -sin(mlx->play->playr_dir) * MOVE_SPEED;
 	}
 	move_player(mlx, move_x, move_y);
+	//debug_print("Player moved to: (%f, %f)\n", mlx->play->playr_x, mlx->play->playr_y);
+    //debug_print("Player direction: %f\n", mlx->play->playr_dir);
 }
 
 void	hanlde_key_release(mlx_key_data_t keycode, t_mlx *mlx)
@@ -108,9 +114,9 @@ void	key_pressed(mlx_key_data_t keycode, void *param)
 	else if (keycode.key == MLX_KEY_A && keycode.action == MLX_PRESS)
 		mlx->play->h_move = -1;
 	else if (keycode.key == MLX_KEY_W && keycode.action == MLX_PRESS)
-		mlx->play->v_move = 1;
-	else if (keycode.key == MLX_KEY_S && keycode.action == MLX_PRESS)
 		mlx->play->v_move = -1;
+	else if (keycode.key == MLX_KEY_S && keycode.action == MLX_PRESS)
+		mlx->play->v_move = 1;
 	else if (keycode.key == MLX_KEY_LEFT && keycode.action == MLX_PRESS)
 		mlx->play->rotate = -1;
 	else if (keycode.key == MLX_KEY_RIGHT && keycode.action == MLX_PRESS)

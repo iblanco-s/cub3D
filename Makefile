@@ -29,6 +29,7 @@ SRCS	= $(SRC_DIR)/parse/check.c \
 		$(SRC_DIR)/raycasting/raycasting_2.c \
 		$(SRC_DIR)/raycasting/raycasting_3.c \
 		$(SRC_DIR)/raycasting/raycasting_4.c \
+		$(SRC_DIR)/raycasting/minimap.c \
 		$(SRC_DIR)/main.c \
 
 OBJS    = $(SRCS:$(SRC_DIR)/%.c=$(OBJ_DIR)/%.o)

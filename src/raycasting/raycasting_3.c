@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   raycasting_3.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jsalaber <jsalaber@student.42.fr>          +#+  +:+       +#+        */
+/*   By: iblanco- <iblanco-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/02 12:54:07 by jsalaber          #+#    #+#             */
-/*   Updated: 2024/07/09 10:02:30 by jsalaber         ###   ########.fr       */
+/*   Updated: 2024/07/10 11:03:34 by iblanco-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,9 +46,9 @@ mlx_texture_t	*get_texture(t_mlx *mlx, int flag)
 	else
 	{
 		if (mlx->ray->ray_angle > 0 && mlx->ray->ray_angle < PI)
-			return (mlx->tex->so);
-		else
 			return (mlx->tex->no);
+		else
+			return (mlx->tex->so);
 	}
 }
 

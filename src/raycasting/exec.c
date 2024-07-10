@@ -3,14 +3,25 @@
 /*                                                        :::      ::::::::   */
 /*   exec.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jsalaber <jsalaber@student.42.fr>          +#+  +:+       +#+        */
+/*   By: iblanco- <iblanco-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/28 09:28:47 by jsalaber          #+#    #+#             */
-/*   Updated: 2024/07/09 10:25:21 by jsalaber         ###   ########.fr       */
+/*   Updated: 2024/07/10 11:57:45 by iblanco-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../cub3D.h"
+
+void debug_print(const char *format, ...) {
+    if (DEBUG) {
+        va_list args;
+        va_start(args, format);
+        printf("[DEBUG] ");
+        vprintf(format, args);
+        va_end(args);
+    }
+}
+
 
 void	redraw_map(void *mlx_t)
 {
@@ -21,6 +32,7 @@ void	redraw_map(void *mlx_t)
 	mlx->img = mlx_new_image(mlx->mlx_ptr, WW, WH);
 	execute_player_move(mlx, 0, 0);
 	raycasting(mlx);
+	draw_minimap(mlx);
 	mlx_image_to_window(mlx->mlx_ptr, mlx->img, 0, 0);
 }
 
@@ -60,6 +72,9 @@ int	exec(t_data *dat)
 	locate_player(&mlx);
 	mlx_key_hook(mlx.mlx_ptr, &key_pressed, &mlx);
 	mlx_loop_hook(mlx.mlx_ptr, &redraw_map, &mlx);
+	debug_print("Initial player position: (%f, %f)\n", mlx.play->playr_x, mlx.play->playr_y);
+    debug_print("Initial player direction: %f\n", mlx.play->playr_dir);
+    debug_print("FOV: %f\n", mlx.play->fov_rad);
 	mlx_loop(mlx.mlx_ptr);
 	ft_exit(&mlx);
 	return (0);

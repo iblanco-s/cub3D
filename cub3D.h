@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3D.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jsalaber <jsalaber@student.42.fr>          +#+  +:+       +#+        */
+/*   By: iblanco- <iblanco-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/12 09:55:16 by jsalaber          #+#    #+#             */
-/*   Updated: 2024/07/09 10:29:55 by jsalaber         ###   ########.fr       */
+/*   Updated: 2024/07/10 13:43:10 by iblanco-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,11 +15,12 @@
 
 # include "libft/libft.h"
 # include "libft/get_next_line.h"
-# include "MLX42/MLX42.h"
+# include "MLX42/include/MLX42/MLX42.h"
 # include <unistd.h>
 # include <stdbool.h>
 # include <math.h>
 # include <stdint.h>
+#include <stdarg.h>
 
 # define WW 800
 # define WH 600
@@ -167,6 +168,7 @@ void	ft_exit(t_mlx *mlx);
 
 //RAYCASTING.c-raycasting_2.c
 void	draw_wall_segment(t_mlx *mlx, int ray);
+int		get_rgba(int r, int g, int b, int a);
 
 //RAYCASTING.c-raycasting_3.c
 int				reverse_bytes(int num);
@@ -177,5 +179,11 @@ int				unit_circle(float angle, char axis);
 
 //RAYCASTING.c-raycasting_4.c
 void	raycasting(t_mlx *mlx);
+
+//MINIMAP.c
+void	draw_minimap(t_mlx *mlx);
+
+#define DEBUG 1
+void debug_print(const char *format, ...);
 
 #endif
