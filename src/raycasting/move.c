@@ -3,18 +3,18 @@
 /*                                                        :::      ::::::::   */
 /*   move.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: iblanco- <iblanco-@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jsalaber <jsalaber@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/01 13:01:50 by jsalaber          #+#    #+#             */
-/*   Updated: 2024/07/10 12:29:58 by iblanco-         ###   ########.fr       */
+/*   Updated: 2024/07/11 13:55:52 by jsalaber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../cub3D.h"
 
-void	rotate_player(t_mlx *mlx, bool flag)
+void	rotate_player(t_mlx *mlx, int flag)
 {
-	if (flag)
+	if (flag == 1)
 	{
 		mlx->play->playr_dir += ROTATION_SPEED;
 		if (mlx->play->playr_dir > 2 * PI)
@@ -57,9 +57,9 @@ void	move_player(t_mlx *mlx, double move_x, double move_y)
 void	execute_player_move(t_mlx *mlx, double move_x, double move_y)
 {
 	if (mlx->play->rotate == 1)
-		rotate_player(mlx, true);
+		rotate_player(mlx, 1);
 	if (mlx->play->rotate == -1)
-		rotate_player(mlx, false);
+		rotate_player(mlx, 0);
 	if (mlx->play->h_move == 1)
 	{
 		move_x = -sin(mlx->play->playr_dir) * MOVE_SPEED;
