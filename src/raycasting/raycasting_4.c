@@ -6,7 +6,7 @@
 /*   By: iblanco- <iblanco-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/03 10:02:42 by jsalaber          #+#    #+#             */
-/*   Updated: 2024/07/10 10:39:00 by iblanco-         ###   ########.fr       */
+/*   Updated: 2024/07/11 13:35:59 by iblanco-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,7 +65,7 @@ float	check_h_inter(t_mlx *mlx, float angle)
 
 	step_y = TILE_SIZE;
 	step_x = TILE_SIZE / tan(angle);
-	inter_y = ((int)(mlx->play->playr_y / TILE_SIZE)) * TILE_SIZE;
+	inter_y = (floor(mlx->play->playr_y / TILE_SIZE)) * TILE_SIZE;
 	flag = check_inter(angle, &inter_y, &step_y, 1);
 	inter_x = mlx->play->playr_x + (inter_y - mlx->play->playr_y) / tan(angle);
 	if ((unit_circle(angle, 'y') && step_x < 0)
@@ -93,7 +93,7 @@ float	check_v_inter(t_mlx *mlx, float angle)
 
 	step_x = TILE_SIZE;
 	step_y = TILE_SIZE * tan(angle);
-	inter_x = ((int)(mlx->play->playr_x / TILE_SIZE)) * TILE_SIZE;
+	inter_x = (floor(mlx->play->playr_x / TILE_SIZE)) * TILE_SIZE;
 	flag = check_inter(angle, &inter_x, &step_x, 0);
 	inter_y = mlx->play->playr_y + (inter_x - mlx->play->playr_x) * tan(angle);
 	if ((unit_circle(angle, 'x') && step_y < 0)
@@ -111,6 +111,29 @@ float	check_v_inter(t_mlx *mlx, float angle)
 			+ pow(inter_y - mlx->play->playr_y, 2)));
 }
 
+void add_ray(t_paint_ray **paint_ray, double x, double y)
+{
+    if (!*paint_ray)
+    {
+        *paint_ray = (t_paint_ray *)ft_calloc(1, sizeof(t_paint_ray));
+        if (!*paint_ray)
+            return; // Handle allocation failure
+        (*paint_ray)->x = x;
+        (*paint_ray)->y = y;
+    }
+    else
+    {
+        t_paint_ray *current = *paint_ray;
+        while (current->next)
+            current = current->next;
+        current->next = (t_paint_ray *)ft_calloc(1, sizeof(t_paint_ray));
+        if (!current->next)
+            return; // Handle allocation failure
+        current->next->x = x;
+        current->next->y = y;
+    }
+}
+
 void	raycasting(t_mlx *mlx)
 {
 	double	inter_h;
@@ -126,11 +149,17 @@ void	raycasting(t_mlx *mlx)
 		inter_h = check_h_inter(mlx, mlx->ray->ray_angle);
 		inter_v = check_v_inter(mlx, mlx->ray->ray_angle);
 		if (inter_v <= inter_h)
+		{
 			mlx->ray->distance = inter_v;
+			add_ray(&(mlx->paint_ray), mlx->ray->wall_v_x, mlx->ray->wall_v_y);
+			//draw_ray_minimap(mlx, mlx->ray->wall_v_x, mlx->ray->wall_v_y);
+		}	
 		else
 		{
 			mlx->ray->distance = inter_h;
-			mlx->ray->flag = 1;	
+			mlx->ray->flag = 1;
+			add_ray(&(mlx->paint_ray), mlx->ray->wall_h_x, mlx->ray->wall_h_y);
+			//draw_ray_minimap(mlx, mlx->ray->wall_h_x, mlx->ray->wall_h_y);
 		}
 		draw_wall_segment(mlx, ray);
 		//debug_print("Ray %d: distance = %f", ray, mlx->ray->distance);

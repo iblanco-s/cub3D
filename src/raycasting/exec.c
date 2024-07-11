@@ -6,7 +6,7 @@
 /*   By: iblanco- <iblanco-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/28 09:28:47 by jsalaber          #+#    #+#             */
-/*   Updated: 2024/07/10 11:57:45 by iblanco-         ###   ########.fr       */
+/*   Updated: 2024/07/11 13:16:41 by iblanco-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,6 +63,7 @@ int	exec(t_data *dat)
 	mlx.play = (t_player *)ft_calloc(1, sizeof(t_player));
 	mlx.ray = (t_ray *)ft_calloc(1, sizeof(t_ray));
 	mlx.tex = (t_tex *)ft_calloc(1, sizeof(t_tex));
+	mlx.paint_ray = NULL;
 	mlx.dat = dat;
 	mlx.mlx_ptr = mlx_init(WW, WH, "Cub3D", false);
 	if (!mlx.mlx_ptr)

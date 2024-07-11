@@ -6,7 +6,7 @@
 /*   By: iblanco- <iblanco-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/02 10:45:51 by jsalaber          #+#    #+#             */
-/*   Updated: 2024/07/10 13:42:27 by iblanco-         ###   ########.fr       */
+/*   Updated: 2024/07/11 11:32:53 by iblanco-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,11 +53,17 @@ void	draw_wall(t_mlx *mlx, int d_pix, int u_pix, double wall_height)
 	pix = (uint32_t *)texture->pixels;
     scale = (double)texture->height / wall_height;
     ip_x = get_impact_point(texture, mlx);
+	if (ip_x < 0)
+		ip_x = 0;
 	ip_y = (u_pix - (WH / 2) + (wall_height / 2)) * scale;
 	if (ip_y < 0)
 		ip_y = 0;
 	while (u_pix < d_pix)
 	{
+		// int pix_var = (int)ip_y * texture->width + (int)ip_x;
+		// printf("pix_var = %d\n", pix_var);
+		// if (pix_var < 0)
+		// 	pix_var = 0;
 		ft_put_pixel(mlx, mlx->ray->index, u_pix,
 			reverse_bytes(pix[(int)ip_y * texture->width + (int)ip_x]));
 		ip_y += scale;
