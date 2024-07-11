@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   raycasting_4.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: iblanco- <iblanco-@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jsalaber <jsalaber@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/03 10:02:42 by jsalaber          #+#    #+#             */
-/*   Updated: 2024/07/10 10:39:00 by iblanco-         ###   ########.fr       */
+/*   Updated: 2024/07/11 13:11:03 by jsalaber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,16 +32,15 @@ int	hit_wall(t_mlx *mlx, float x, float y)
 	return (1);
 }
 
-int	check_inter(float angle, float *inter, float *step, int flag)
+int	check_inter(float angle, float *inter, float *step, int horizontal)
 {
-	if (flag)
+	if (horizontal)
 	{
 		if (angle > 0 && angle < PI)
 		{
 			*inter += TILE_SIZE;
 			return (-1);
 		}
-		*step *= -1;
 	}
 	else
 	{
@@ -50,8 +49,8 @@ int	check_inter(float angle, float *inter, float *step, int flag)
 			*inter += TILE_SIZE;
 			return (-1);
 		}
-		*step *= -1;
 	}
+	*step *= -1;
 	return (1);
 }
 
@@ -65,11 +64,10 @@ float	check_h_inter(t_mlx *mlx, float angle)
 
 	step_y = TILE_SIZE;
 	step_x = TILE_SIZE / tan(angle);
-	inter_y = ((int)(mlx->play->playr_y / TILE_SIZE)) * TILE_SIZE;
+	inter_y = (floor(mlx->play->playr_y / TILE_SIZE)) * TILE_SIZE;
 	flag = check_inter(angle, &inter_y, &step_y, 1);
 	inter_x = mlx->play->playr_x + (inter_y - mlx->play->playr_y) / tan(angle);
-	if ((unit_circle(angle, 'y') && step_x < 0)
-		|| (!unit_circle(angle, 'y') && step_x > 0))
+	if ((angle > PI && step_x > 0) || (angle < PI && step_x < 0))
 		step_x *= -1;
 	while (hit_wall(mlx, inter_x, inter_y - flag))
 	{
@@ -93,11 +91,11 @@ float	check_v_inter(t_mlx *mlx, float angle)
 
 	step_x = TILE_SIZE;
 	step_y = TILE_SIZE * tan(angle);
-	inter_x = ((int)(mlx->play->playr_x / TILE_SIZE)) * TILE_SIZE;
+	inter_x = (floor(mlx->play->playr_x / TILE_SIZE)) * TILE_SIZE;
 	flag = check_inter(angle, &inter_x, &step_x, 0);
 	inter_y = mlx->play->playr_y + (inter_x - mlx->play->playr_x) * tan(angle);
-	if ((unit_circle(angle, 'x') && step_y < 0)
-		|| (!unit_circle(angle, 'x') && step_y > 0))
+	if ((angle > PI/2 && angle < 3*PI/2 && step_y < 0) || 
+        ((angle < PI/2 || angle > 3*PI/2) && step_y > 0))
 		step_y *= -1;
 	while (hit_wall(mlx, inter_x - flag, inter_y))
 	{
