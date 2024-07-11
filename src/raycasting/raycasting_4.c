@@ -6,7 +6,7 @@
 /*   By: jsalaber <jsalaber@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/03 10:02:42 by jsalaber          #+#    #+#             */
-/*   Updated: 2024/07/11 13:11:03 by jsalaber         ###   ########.fr       */
+/*   Updated: 2024/07/11 13:41:20 by jsalaber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,7 +67,8 @@ float	check_h_inter(t_mlx *mlx, float angle)
 	inter_y = (floor(mlx->play->playr_y / TILE_SIZE)) * TILE_SIZE;
 	flag = check_inter(angle, &inter_y, &step_y, 1);
 	inter_x = mlx->play->playr_x + (inter_y - mlx->play->playr_y) / tan(angle);
-	if ((angle > PI && step_x > 0) || (angle < PI && step_x < 0))
+	if ((unit_circle(angle, 'y') && step_x < 0)
+		|| (!unit_circle(angle, 'y') && step_x > 0))
 		step_x *= -1;
 	while (hit_wall(mlx, inter_x, inter_y - flag))
 	{
@@ -94,8 +95,8 @@ float	check_v_inter(t_mlx *mlx, float angle)
 	inter_x = (floor(mlx->play->playr_x / TILE_SIZE)) * TILE_SIZE;
 	flag = check_inter(angle, &inter_x, &step_x, 0);
 	inter_y = mlx->play->playr_y + (inter_x - mlx->play->playr_x) * tan(angle);
-	if ((angle > PI/2 && angle < 3*PI/2 && step_y < 0) || 
-        ((angle < PI/2 || angle > 3*PI/2) && step_y > 0))
+	if ((unit_circle(angle, 'x') && step_y < 0)
+		|| (!unit_circle(angle, 'x') && step_y > 0))
 		step_y *= -1;
 	while (hit_wall(mlx, inter_x - flag, inter_y))
 	{
