@@ -6,7 +6,7 @@
 /*   By: junesalaberria <junesalaberria@student.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/12 09:55:16 by jsalaber          #+#    #+#             */
-/*   Updated: 2024/07/12 11:18:05 by junesalaber      ###   ########.fr       */
+/*   Updated: 2024/07/12 13:23:37 by junesalaber      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,6 +88,13 @@ typedef struct s_ray
 	int			flag;
 }	t_ray;
 
+typedef struct s_paint_ray
+{
+	double				x;
+	double				y;
+	struct s_paint_ray	*next;
+}	t_paint_ray;
+
 typedef struct s_mlx
 {
 	mlx_t		*mlx_ptr;
@@ -97,6 +104,7 @@ typedef struct s_mlx
 	t_ray		*ray;
 	t_text		*mlx_texture;
 	t_tex		*tex;
+	t_paint_ray	*paint_ray;
 }	t_mlx;
 
 //PARSE-check_1.c
@@ -182,6 +190,8 @@ void	raycasting(t_mlx *mlx);
 
 //MINIMAP.c
 void	draw_minimap(t_mlx *mlx);
+void	draw_player(t_mlx *mlx);
+void	draw_ray_minimap(t_mlx *mlx, double x, double y);
 
 #define DEBUG 1
 void debug_print(const char *format, ...);
