@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   texture_2.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jsalaber <jsalaber@student.42.fr>          +#+  +:+       +#+        */
+/*   By: junesalaberria <junesalaberria@student.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/28 10:12:33 by jsalaber          #+#    #+#             */
-/*   Updated: 2024/07/04 09:39:14 by jsalaber         ###   ########.fr       */
+/*   Updated: 2024/07/12 16:04:42 by junesalaber      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,7 @@ int	check_color(t_data *data, t_text *mlx_texture)
 		if (!ft_strncmp(tmp->value, "F", 1) || !ft_strncmp(tmp->value, "C", 1))
 		{
 			if (!check_color_value(ft_split(tmp->path, ',')))
-				return (ft_error("Error: Invalid color value\n"), 0);
+				return (ft_error("\n Invalid color value\n"), 0);
 			save_color(tmp, data);
 		}
 		tmp = tmp->next;

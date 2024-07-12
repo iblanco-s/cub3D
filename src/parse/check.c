@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   check.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: iblanco- <iblanco-@student.42.fr>          +#+  +:+       +#+        */
+/*   By: junesalaberria <junesalaberria@student.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/12 10:00:09 by jsalaber          #+#    #+#             */
-/*   Updated: 2024/07/04 15:16:50 by iblanco-         ###   ########.fr       */
+/*   Updated: 2024/07/12 16:04:59 by junesalaber      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ int	count_texture(t_data *data, int count)
 {
 	if (count != 6)
 	{
-		ft_error("Error: Missing texture\n");
+		ft_error("Error\n Missing texture\n");
 		free(data->texture);
 		free(data->line);
 		return (0);
@@ -56,7 +56,7 @@ char	*get_map(t_data *data)
 	{
 		if (data->line[0] == '\n')
 		{
-			ft_error("Error: Empty line\n");
+			ft_error("Error\n Empty line\n");
 			return (ft_free_readmap(data->line, data->map, -1), NULL);
 		}
 		temp = data->map;

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   load_texture.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jsalaber <jsalaber@student.42.fr>          +#+  +:+       +#+        */
+/*   By: junesalaberria <junesalaberria@student.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/01 09:31:07 by jsalaber          #+#    #+#             */
-/*   Updated: 2024/07/09 09:40:44 by jsalaber         ###   ########.fr       */
+/*   Updated: 2024/07/12 16:05:06 by junesalaber      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ bool	valid_texture(int width, int height)
 {
 	if (width != TILE_SIZE || height != TILE_SIZE)
 	{
-		ft_error("Error: Texture size is correct\n");
+		ft_error("Error\n Texture size is correct\n");
 		return (false);
 	}
 	return (true);

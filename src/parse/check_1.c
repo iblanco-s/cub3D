@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   check_1.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jsalaber <jsalaber@student.42.fr>          +#+  +:+       +#+        */
+/*   By: junesalaberria <junesalaberria@student.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/14 09:04:52 by junesalaber       #+#    #+#             */
-/*   Updated: 2024/06/18 13:02:05 by jsalaber         ###   ########.fr       */
+/*   Updated: 2024/07/12 16:03:22 by junesalaber      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ int	check_split_texture(char **split_texture, int count)
 	{
 		if (!check_split_letter(split_texture[i]))
 		{
-			ft_error("Error: Wrong texture\n");
+			ft_error("Error\n Wrong texture\n");
 			return (0);
 		}
 	}
@@ -103,7 +103,7 @@ int	check_fc_fromat(char **split_texture)
 		{
 			if (count_comma(p) != 2 || !check_comma_position(p))
 			{
-				ft_error("Error: Wrong F/C format\n");
+				ft_error("Error\n Wrong F/C format\n");
 				return (0);
 			}
 		}

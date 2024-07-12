@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: iblanco- <iblanco-@student.42.fr>          +#+  +:+       +#+        */
+/*   By: junesalaberria <junesalaberria@student.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/12 10:52:44 by jsalaber          #+#    #+#             */
-/*   Updated: 2024/07/04 12:06:21 by iblanco-         ###   ########.fr       */
+/*   Updated: 2024/07/12 16:04:20 by junesalaber      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,7 +69,7 @@ int	parse(int argc, char **argv, t_data *data, t_text *list_texture)
 	list_texture = NULL;
 	if (argc != 2 || !check_extension(argv[1]))
 	{
-		ft_error("Error: Wrong argument\n");
+		ft_error("Error\n Wrong argument\n");
 		exit(0);
 	}
 	count = 0;
