@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   move.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jsalaber <jsalaber@student.42.fr>          +#+  +:+       +#+        */
+/*   By: junesalaberria <junesalaberria@student.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/01 13:01:50 by jsalaber          #+#    #+#             */
-/*   Updated: 2024/07/11 13:55:52 by jsalaber         ###   ########.fr       */
+/*   Updated: 2024/07/12 09:34:00 by junesalaber      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,10 +40,10 @@ void	move_player(t_mlx *mlx, double move_x, double move_y)
 	map_new_x = (new_x / TILE_SIZE);
 	map_new_y = (new_y / TILE_SIZE);
 	if (mlx->dat->split_map[map_new_y][map_new_x] != '1'
-		/*&& mlx->dat->map_copy[map_new_y][(int)mlx->play->playr_x / \
+		&& mlx->dat->split_map[map_new_y][mlx->play->playr_x / \
 		TILE_SIZE != '1']
-		&& mlx->dat->map_copy[(int)mlx->play->playr_y / \
-		TILE_SIZE][map_new_x] != '1'*/)
+		&& mlx->dat->split_map[mlx->play->playr_y / \
+		TILE_SIZE][map_new_x] != '1')
 	{
 		mlx->play->playr_x = new_x;
 		mlx->play->playr_y = new_y;
@@ -65,7 +65,7 @@ void	execute_player_move(t_mlx *mlx, double move_x, double move_y)
 		move_x = -sin(mlx->play->playr_dir) * MOVE_SPEED;
 		move_y = cos(mlx->play->playr_dir) * MOVE_SPEED;
 	}
-	else if (mlx->play->h_move == -1)
+	if (mlx->play->h_move == -1)
 	{
 		move_x = sin(mlx->play->playr_dir) * MOVE_SPEED;
 		move_y = -cos(mlx->play->playr_dir) * MOVE_SPEED;
@@ -75,7 +75,7 @@ void	execute_player_move(t_mlx *mlx, double move_x, double move_y)
 		move_x = cos(mlx->play->playr_dir) * MOVE_SPEED;
 		move_y = sin(mlx->play->playr_dir) * MOVE_SPEED;
 	}
-	else if (mlx->play->v_move == -1)
+	if (mlx->play->v_move == -1)
 	{
 		move_x = -cos(mlx->play->playr_dir) * MOVE_SPEED;
 		move_y = -sin(mlx->play->playr_dir) * MOVE_SPEED;

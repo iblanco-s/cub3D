@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   raycasting_4.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jsalaber <jsalaber@student.42.fr>          +#+  +:+       +#+        */
+/*   By: junesalaberria <junesalaberria@student.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/03 10:02:42 by jsalaber          #+#    #+#             */
-/*   Updated: 2024/07/11 13:41:20 by jsalaber         ###   ########.fr       */
+/*   Updated: 2024/07/12 09:23:38 by junesalaber      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,12 +19,12 @@ int	hit_wall(t_mlx *mlx, float x, float y)
 
 	if (x < 0 || y < 0)
 		return (0);
-	map_x = (int)(x / TILE_SIZE);
-	map_y = (int)(y / TILE_SIZE);
+	map_x = floor(x / TILE_SIZE);
+	map_y = floor(y / TILE_SIZE);
 	if (map_x >= mlx->dat->map_width || map_y >= mlx->dat->map_height)
 		return (0);
 	if (mlx->dat->split_map[map_y]
-		&& map_x < (int)ft_strlen(mlx->dat->split_map[map_y]))
+		&& map_x <= (int)ft_strlen(mlx->dat->split_map[map_y]))
 	{
 		if (mlx->dat->split_map[map_y][map_x] != '0')
 			return (0);
@@ -44,7 +44,7 @@ int	check_inter(float angle, float *inter, float *step, int horizontal)
 	}
 	else
 	{
-		if (angle > PI / 2 && angle < 3 * PI / 2)
+		if (!(angle > PI / 2 && angle < 3 * PI / 2))
 		{
 			*inter += TILE_SIZE;
 			return (-1);
@@ -67,8 +67,8 @@ float	check_h_inter(t_mlx *mlx, float angle)
 	inter_y = (floor(mlx->play->playr_y / TILE_SIZE)) * TILE_SIZE;
 	flag = check_inter(angle, &inter_y, &step_y, 1);
 	inter_x = mlx->play->playr_x + (inter_y - mlx->play->playr_y) / tan(angle);
-	if ((unit_circle(angle, 'y') && step_x < 0)
-		|| (!unit_circle(angle, 'y') && step_x > 0))
+	if ((unit_circle(angle, 'y') && step_x > 0)
+		|| (!unit_circle(angle, 'y') && step_x < 0))
 		step_x *= -1;
 	while (hit_wall(mlx, inter_x, inter_y - flag))
 	{
@@ -117,13 +117,13 @@ void	raycasting(t_mlx *mlx)
 	int		ray;
 
 	ray = 0;
-	mlx->ray->ray_angle = mlx->play->playr_dir - mlx->play->fov_rad / 2;
+	mlx->ray->ray_angle = mlx->play->playr_dir - (mlx->play->fov_rad / 2);
 	while (ray < WW)
 	{
 		//debug_print("Ray %d: angle = %f\n", ray, mlx->ray->ray_angle);
 		mlx->ray->flag = 0;
-		inter_h = check_h_inter(mlx, mlx->ray->ray_angle);
-		inter_v = check_v_inter(mlx, mlx->ray->ray_angle);
+		inter_h = check_h_inter(mlx, normalize_angle(mlx->ray->ray_angle));
+		inter_v = check_v_inter(mlx, normalize_angle(mlx->ray->ray_angle));
 		if (inter_v <= inter_h)
 			mlx->ray->distance = inter_v;
 		else
@@ -134,6 +134,6 @@ void	raycasting(t_mlx *mlx)
 		draw_wall_segment(mlx, ray);
 		//debug_print("Ray %d: distance = %f", ray, mlx->ray->distance);
 		ray++;
-		mlx->ray->ray_angle += mlx->play->fov_rad / WW;
+		mlx->ray->ray_angle += (mlx->play->fov_rad / WW);
 	}	
 }
