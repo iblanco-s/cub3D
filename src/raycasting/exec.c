@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exec.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: iblanco- <iblanco-@student.42.fr>          +#+  +:+       +#+        */
+/*   By: junesalaberria <junesalaberria@student.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/28 09:28:47 by jsalaber          #+#    #+#             */
-/*   Updated: 2024/07/10 11:57:45 by iblanco-         ###   ########.fr       */
+/*   Updated: 2024/07/12 17:01:48 by junesalaber      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,6 +54,33 @@ void	locate_player(t_mlx *mlx)
 	mlx->play->fov_rad = (FOV * PI) / 180;
 }
 
+void mouse_moved(void *param)
+{
+    t_mlx *mlx;
+    int mouse_x, mouse_y;
+    float sensitivity = 0.05f; // Ajusta la sensibilidad según sea necesario
+
+    mlx = param;
+    mlx_get_mouse_pos(mlx->mlx_ptr, &mouse_x, &mouse_y);
+
+    // Calcula el cambio en la posición del ratón desde el centro de la pantalla
+    int delta_x = mouse_x - (WW / 2);
+    int delta_y = mouse_y - (WH / 2);
+
+    // Actualiza la dirección del jugador de manera suave
+    mlx->play->playr_dir += sensitivity * delta_x;
+
+    // Asegúrate de que el ángulo esté dentro del rango [0, 2*PI)
+    if (mlx->play->playr_dir >= 2 * PI)
+        mlx->play->playr_dir -= 2 * PI;
+    else if (mlx->play->playr_dir < 0)
+        mlx->play->playr_dir += 2 * PI;
+
+    // Vuelve a centrar el ratón en el medio de la pantalla
+    mlx_set_mouse_pos(mlx->mlx_ptr, WW / 2, WH / 2);
+}
+
+
 int	exec(t_data *dat)
 {
 	t_mlx	mlx;
@@ -72,6 +99,8 @@ int	exec(t_data *dat)
 	locate_player(&mlx);
 	mlx_key_hook(mlx.mlx_ptr, &key_pressed, &mlx);
 	mlx_loop_hook(mlx.mlx_ptr, &redraw_map, &mlx);
+	mlx_set_cursor_mode(mlx.mlx_ptr, MLX_MOUSE_DISABLED);
+	mlx_cursor_hook(mlx.mlx_ptr, (void *)&mouse_moved, &mlx);
 	debug_print("Initial player position: (%f, %f)\n", mlx.play->playr_x, mlx.play->playr_y);
     debug_print("Initial player direction: %f\n", mlx.play->playr_dir);
     debug_print("FOV: %f\n", mlx.play->fov_rad);

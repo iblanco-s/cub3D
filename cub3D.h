@@ -6,7 +6,7 @@
 /*   By: junesalaberria <junesalaberria@student.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/12 09:55:16 by jsalaber          #+#    #+#             */
-/*   Updated: 2024/07/12 13:23:37 by junesalaber      ###   ########.fr       */
+/*   Updated: 2024/07/12 17:00:37 by junesalaber      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,6 +74,8 @@ typedef struct s_player
 	int		rotate;
 	int		h_move;
 	int		v_move;
+	int		mouse_x;
+	int		mouse_y;
 }	t_player;
 
 typedef struct s_ray
@@ -105,6 +107,7 @@ typedef struct s_mlx
 	t_text		*mlx_texture;
 	t_tex		*tex;
 	t_paint_ray	*paint_ray;
+	mouse_mode_t	mouse;
 }	t_mlx;
 
 //PARSE-check_1.c
