@@ -6,7 +6,7 @@
 /*   By: junesalaberria <junesalaberria@student.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/01 13:01:50 by jsalaber          #+#    #+#             */
-/*   Updated: 2024/07/12 09:34:00 by junesalaber      ###   ########.fr       */
+/*   Updated: 2024/07/12 11:09:38 by junesalaber      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,8 +35,8 @@ void	move_player(t_mlx *mlx, double move_x, double move_y)
 	int	map_new_x;
 	int	map_new_y;
 
-	new_x = (int)(mlx->play->playr_x + move_x);
-	new_y = (int)(mlx->play->playr_y + move_y);
+	new_x = roundf(mlx->play->playr_x + move_x);
+	new_y = roundf(mlx->play->playr_y + move_y);
 	map_new_x = (new_x / TILE_SIZE);
 	map_new_y = (new_y / TILE_SIZE);
 	if (mlx->dat->split_map[map_new_y][map_new_x] != '1'
@@ -114,9 +114,9 @@ void	key_pressed(mlx_key_data_t keycode, void *param)
 	else if (keycode.key == MLX_KEY_A && keycode.action == MLX_PRESS)
 		mlx->play->h_move = -1;
 	else if (keycode.key == MLX_KEY_W && keycode.action == MLX_PRESS)
-		mlx->play->v_move = -1;
-	else if (keycode.key == MLX_KEY_S && keycode.action == MLX_PRESS)
 		mlx->play->v_move = 1;
+	else if (keycode.key == MLX_KEY_S && keycode.action == MLX_PRESS)
+		mlx->play->v_move = -1;
 	else if (keycode.key == MLX_KEY_LEFT && keycode.action == MLX_PRESS)
 		mlx->play->rotate = -1;
 	else if (keycode.key == MLX_KEY_RIGHT && keycode.action == MLX_PRESS)

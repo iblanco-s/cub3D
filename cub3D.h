@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3D.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: iblanco- <iblanco-@student.42.fr>          +#+  +:+       +#+        */
+/*   By: junesalaberria <junesalaberria@student.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/12 09:55:16 by jsalaber          #+#    #+#             */
-/*   Updated: 2024/07/10 13:43:10 by iblanco-         ###   ########.fr       */
+/*   Updated: 2024/07/12 11:07:37 by junesalaber      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@
 # define TILE_SIZE 64
 # define PI 3.14159265358979323846
 # define ROTATION_SPEED 0.042
-# define MOVE_SPEED 0.5
+# define MOVE_SPEED 3
 
 typedef struct s_text
 {
