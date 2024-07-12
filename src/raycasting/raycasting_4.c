@@ -6,7 +6,7 @@
 /*   By: junesalaberria <junesalaberria@student.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/03 10:02:42 by jsalaber          #+#    #+#             */
-/*   Updated: 2024/07/12 09:23:38 by junesalaber      ###   ########.fr       */
+/*   Updated: 2024/07/12 09:36:25 by junesalaber      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ int	hit_wall(t_mlx *mlx, float x, float y)
 	if (mlx->dat->split_map[map_y]
 		&& map_x <= (int)ft_strlen(mlx->dat->split_map[map_y]))
 	{
-		if (mlx->dat->split_map[map_y][map_x] != '0')
+		if (mlx->dat->split_map[map_y][map_x] == '1')
 			return (0);
 	}
 	return (1);
