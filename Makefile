@@ -2,13 +2,13 @@ NAME	= cub3D
 
 CC 		= gcc
 
-CFLAGS	= -Wall -Wextra #-Werror -g3 #-fsanitize=address
+CFLAGS	= -Wall -Wextra -Werror -g3 #-fsanitize=address
 
 #Linux
-#MLX_FLAG = -Iinclude -ldl -lglfw -pthread -lm
+MLX_FLAG = -Iinclude -ldl -lglfw -pthread -lm
 
 #MAC
-MLX_FLAG = -framework Cocoa -framework OpenGL -framework IOKit -lglfw
+#MLX_FLAG = -framework Cocoa -framework OpenGL -framework IOKit -lglfw
 
 RM		= rm -rf
 
@@ -48,18 +48,18 @@ MLX_A = $(MLX)/libmlx42.a
 MLX_INC = -I$(MLX)
 MLX_OBJS = $(MLX)/*.o
 
-GLFW_INC = -I/opt/homebrew/include
-GLFW_LIB = -L/opt/homebrew/lib
+#GLFW_INC = -I/opt/homebrew/include
+#GLFW_LIB = -L/opt/homebrew/lib
 
 all: $(NAME)
 
 $(NAME): $(OBJS) $(LIBFT) $(MLX_A)
 	@$(MAKE) -C $(LIBFT)
-	$(CC) $(CFLAGS) $(OBJS) $(LIBFT_A) $(MLX_A) $(GLFW_LIB) $(MLX_FLAG) -o $(NAME)
+	$(CC) $(CFLAGS) $(OBJS) $(LIBFT_A) $(MLX_A) $(MLX_FLAG) -o $(NAME)
 
 $(OBJ_DIR)/%.o: $(SRC_DIR)/%.c
 	@mkdir -p $(@D)
-	$(CC) $(CFLAGS) $(LIBFT_INC) $(MLX_INC) $(GLFW_INC) -c $< -o $@
+	$(CC) $(CFLAGS) $(MLX_FLAG) $(LIBFT_INC) $(MLX_INC) -c $< -o $@
 
 clean:
 	$(RM) $(OBJ_DIR)

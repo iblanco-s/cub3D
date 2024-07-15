@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   move.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: junesalaberria <junesalaberria@student.    +#+  +:+       +#+        */
+/*   By: jsalaber <jsalaber@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/01 13:01:50 by jsalaber          #+#    #+#             */
-/*   Updated: 2024/07/12 11:09:38 by junesalaber      ###   ########.fr       */
+/*   Updated: 2024/07/15 09:42:24 by jsalaber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,10 +48,10 @@ void	move_player(t_mlx *mlx, double move_x, double move_y)
 		mlx->play->playr_x = new_x;
 		mlx->play->playr_y = new_y;
 	}
-	debug_print("map_new_x: %d\n", map_new_x);
-	debug_print("map_new_y: %d\n", map_new_y);
-	debug_print("new_x: %d\n", new_x);
-	debug_print("new_y: %d\n", new_y);
+	// debug_print("map_new_x: %d\n", map_new_x);
+	// debug_print("map_new_y: %d\n", map_new_y);
+	// debug_print("new_x: %d\n", new_x);
+	// debug_print("new_y: %d\n", new_y);
 }
 
 void	execute_player_move(t_mlx *mlx, double move_x, double move_y)
