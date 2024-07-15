@@ -48,10 +48,6 @@ void	move_player(t_mlx *mlx, double move_x, double move_y)
 		mlx->play->playr_x = new_x;
 		mlx->play->playr_y = new_y;
 	}
-	debug_print("map_new_x: %d\n", map_new_x);
-	debug_print("map_new_y: %d\n", map_new_y);
-	debug_print("new_x: %d\n", new_x);
-	debug_print("new_y: %d\n", new_y);
 }
 
 void	execute_player_move(t_mlx *mlx, double move_x, double move_y)
@@ -81,8 +77,6 @@ void	execute_player_move(t_mlx *mlx, double move_x, double move_y)
 		move_y = -sin(mlx->play->playr_dir) * MOVE_SPEED;
 	}
 	move_player(mlx, move_x, move_y);
-	//debug_print("Player moved to: (%f, %f)\n", mlx->play->playr_x, mlx->play->playr_y);
-    //debug_print("Player direction: %f\n", mlx->play->playr_dir);
 }
 
 void	hanlde_key_release(mlx_key_data_t keycode, t_mlx *mlx)
@@ -107,7 +101,7 @@ void	key_pressed(mlx_key_data_t keycode, void *param)
 
 	mlx = param;
 	if (keycode.key == MLX_KEY_ESCAPE && (keycode.action == MLX_PRESS
-		|| keycode.action == MLX_REPEAT))
+			|| keycode.action == MLX_REPEAT))
 		ft_exit(mlx);
 	else if (keycode.key == MLX_KEY_D && keycode.action == MLX_PRESS)
 		mlx->play->h_move = 1;

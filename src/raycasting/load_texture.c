@@ -23,7 +23,6 @@ bool	valid_texture(int width, int height)
 }
 
 int	load_texture(t_text *text)
-
 {
 	t_text			*temp;
 	mlx_texture_t	*texture;
@@ -31,14 +30,16 @@ int	load_texture(t_text *text)
 	temp = text;
 	while (temp)
 	{
-		if (!ft_strncmp(temp->value, "NO", 2) || !ft_strncmp(temp->value, "EA", 2)
-			|| !ft_strncmp(temp->value, "SO", 2) || !ft_strncmp(temp->value, "WE", 2))
-			{
-				texture = mlx_load_png(temp->path);
-				if (!texture)
-					return (0);
-				mlx_delete_texture(texture);
-			}
+		if (!ft_strncmp(temp->value, "NO", 2)
+			|| !ft_strncmp(temp->value, "EA", 2)
+			|| !ft_strncmp(temp->value, "SO", 2)
+			|| !ft_strncmp(temp->value, "WE", 2))
+		{
+			texture = mlx_load_png(temp->path);
+			if (!texture)
+				return (0);
+			mlx_delete_texture(texture);
+		}
 		temp = temp->next;
 	}
 	return (1);

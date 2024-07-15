@@ -12,16 +12,16 @@
 
 #include "../../cub3D.h"
 
-void debug_print(const char *format, ...) {
-    if (DEBUG) {
-        va_list args;
-        va_start(args, format);
-        printf("[DEBUG] ");
-        vprintf(format, args);
-        va_end(args);
-    }
+void	debug_print(const char *format, ...)
+{
+	if (DEBUG) {
+		va_list args;
+		va_start(args, format);
+		printf("[DEBUG] ");
+		vprintf(format, args);
+		va_end(args);
+	}
 }
-
 
 void	redraw_map(void *mlx_t)
 {
@@ -38,7 +38,7 @@ void	redraw_map(void *mlx_t)
 
 void	locate_player(t_mlx *mlx)
 {
-	int		p;
+	int	p;
 
 	p = mlx->dat->split_map[mlx->dat->player_y][mlx->dat->player_x];
 	if (p == 'E')
@@ -101,9 +101,6 @@ int	exec(t_data *dat)
 	mlx_loop_hook(mlx.mlx_ptr, &redraw_map, &mlx);
 	mlx_set_cursor_mode(mlx.mlx_ptr, MLX_MOUSE_DISABLED);
 	mlx_cursor_hook(mlx.mlx_ptr, (void *)&mouse_moved, &mlx);
-	debug_print("Initial player position: (%f, %f)\n", mlx.play->playr_x, mlx.play->playr_y);
-    debug_print("Initial player direction: %f\n", mlx.play->playr_dir);
-    debug_print("FOV: %f\n", mlx.play->fov_rad);
 	mlx_loop(mlx.mlx_ptr);
 	ft_exit(&mlx);
 	return (0);

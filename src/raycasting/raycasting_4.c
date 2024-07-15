@@ -77,7 +77,6 @@ float	check_h_inter(t_mlx *mlx, float angle)
 	}
 	mlx->ray->wall_h_x = inter_x;
 	mlx->ray->wall_h_y = inter_y;
-	//debug_print("Horizontal intersection: (%f, %f)\n", inter_x, inter_y);
 	return (sqrt(pow(inter_x - mlx->play->playr_x, 2)
 			+ pow(inter_y - mlx->play->playr_y, 2)));
 }
@@ -105,7 +104,6 @@ float	check_v_inter(t_mlx *mlx, float angle)
 	}
 	mlx->ray->wall_v_x = inter_x;
 	mlx->ray->wall_v_y = inter_y;
-	//debug_print("Vertical intersection: (%f, %f)\n", inter_x, inter_y);
 	return (sqrt(pow(inter_x - mlx->play->playr_x, 2)
 			+ pow(inter_y - mlx->play->playr_y, 2)));
 }
@@ -120,7 +118,6 @@ void	raycasting(t_mlx *mlx)
 	mlx->ray->ray_angle = mlx->play->playr_dir - (mlx->play->fov_rad / 2);
 	while (ray < WW)
 	{
-		//debug_print("Ray %d: angle = %f\n", ray, mlx->ray->ray_angle);
 		mlx->ray->flag = 0;
 		inter_h = check_h_inter(mlx, normalize_angle(mlx->ray->ray_angle));
 		inter_v = check_v_inter(mlx, normalize_angle(mlx->ray->ray_angle));
@@ -129,10 +126,9 @@ void	raycasting(t_mlx *mlx)
 		else
 		{
 			mlx->ray->distance = inter_h;
-			mlx->ray->flag = 1;	
+			mlx->ray->flag = 1;
 		}
 		draw_wall_segment(mlx, ray);
-		//debug_print("Ray %d: distance = %f", ray, mlx->ray->distance);
 		ray++;
 		mlx->ray->ray_angle += (mlx->play->fov_rad / WW);
 	}	
