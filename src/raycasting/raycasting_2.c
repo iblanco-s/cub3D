@@ -20,8 +20,8 @@ int	get_rgba(int r, int g, int b, int a)
 void	ft_put_pixel(t_mlx *mlx, int x, int y, int color)
 {
 	if (x < 0 || x >= WW || y < 0 || y >= WH)
-        return ;
-    mlx_put_pixel(mlx->img, x, y, color);
+		return ;
+	mlx_put_pixel(mlx->img, x, y, color);
 }
 
 void	draw_floor_ceiling(t_mlx *mlx, int ray, int d_pix, int u_pix)
@@ -51,10 +51,10 @@ void	draw_wall(t_mlx *mlx, int d_pix, int u_pix, double wall_height)
 
 	texture = get_texture(mlx, mlx->ray->flag);
 	pix = (uint32_t *)texture->pixels;
-    scale = (double)texture->height / wall_height;
-    ip_x = get_impact_point(texture, mlx);
+	scale = (double)texture->height / wall_height;
+	ip_x = get_impact_point(texture, mlx);
 	if (mlx->ray->flag == 0 || mlx->ray->flag == 1)
-        ip_x = texture->width - ip_x - 1;
+		ip_x = texture->width - ip_x - 1;
 	ip_y = (u_pix - (WH / 2) + (wall_height / 2)) * scale;
 	if (ip_x < 0)
 		ip_x = 0;
@@ -67,8 +67,6 @@ void	draw_wall(t_mlx *mlx, int d_pix, int u_pix, double wall_height)
 		ip_y += scale;
 		u_pix++;
 	}
-	//debug_print("Drawing wall: ray = %d, wall height = %f, texture = %p\n", mlx->ray->index, wall_height, texture);
-    //debug_print("Texture coordinates: x = %f, y starts at %f\n", ip_x, ip_y);
 }
 
 void	draw_wall_segment(t_mlx *mlx, int ray)
@@ -77,7 +75,8 @@ void	draw_wall_segment(t_mlx *mlx, int ray)
 	double	d_pix;
 	double	u_pix;
 
-	mlx->ray->distance *= cos(normalize_angle(mlx->ray->ray_angle - mlx->play->playr_dir));
+	mlx->ray->distance *= cos(
+			normalize_angle(mlx->ray->ray_angle - mlx->play->playr_dir));
 	wall_height = (TILE_SIZE / mlx->ray->distance) * (WW / 2) / \
 		tan(mlx->play->fov_rad / 2);
 	d_pix = (WH / 2) + (wall_height / 2);
@@ -87,7 +86,6 @@ void	draw_wall_segment(t_mlx *mlx, int ray)
 	if (u_pix < 0)
 		u_pix = 0;
 	mlx->ray->index = ray;
-	//debug_print("wall height = %f\n", wall_height);
 	draw_wall(mlx, d_pix, u_pix, wall_height);
 	draw_floor_ceiling(mlx, ray, d_pix, u_pix);
 }

@@ -59,12 +59,12 @@ double	get_impact_point(mlx_texture_t *texture, t_mlx *mlx)
 	if (mlx->ray->flag == 1)
 	{
 		impact_point = (int)fmodf((mlx->ray->wall_h_x
-			* (texture->width / TILE_SIZE)), texture->width);
+					* (texture->width / TILE_SIZE)), texture->width);
 	}
 	else
 	{
 		impact_point = (int)fmodf((mlx->ray->wall_v_y
-			* (texture->width / TILE_SIZE)), texture->width);
+					* (texture->width / TILE_SIZE)), texture->width);
 	}
 	return (impact_point);
 }
