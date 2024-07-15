@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exit.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jsalaber <jsalaber@student.42.fr>          +#+  +:+       +#+        */
+/*   By: iblanco- <iblanco-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/28 09:46:36 by jsalaber          #+#    #+#             */
-/*   Updated: 2024/07/09 10:10:49 by jsalaber         ###   ########.fr       */
+/*   Updated: 2024/07/15 13:39:22 by iblanco-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,8 +40,6 @@ void	free_tex(t_tex *tex)
 
 void	ft_exit(t_mlx *mlx)
 {
-	mlx_delete_image(mlx->mlx_ptr, mlx->img);
-	mlx_close_window(mlx->mlx_ptr);
 	free_textures(mlx->dat->texture_list);
 	ft_freemap(mlx->dat);
 	free(mlx->ray);
