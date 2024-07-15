@@ -1,7 +1,7 @@
-/Users/junesalaberria/Documents/42cursus/cub3d/MLX42/build/CMakeFiles/mlx42.dir
-/Users/junesalaberria/Documents/42cursus/cub3d/MLX42/build/CMakeFiles/edit_cache.dir
-/Users/junesalaberria/Documents/42cursus/cub3d/MLX42/build/CMakeFiles/rebuild_cache.dir
-/Users/junesalaberria/Documents/42cursus/cub3d/MLX42/build/CMakeFiles/list_install_components.dir
-/Users/junesalaberria/Documents/42cursus/cub3d/MLX42/build/CMakeFiles/install.dir
-/Users/junesalaberria/Documents/42cursus/cub3d/MLX42/build/CMakeFiles/install/local.dir
-/Users/junesalaberria/Documents/42cursus/cub3d/MLX42/build/CMakeFiles/install/strip.dir
+/home/jsalaber/Cursus/github/rank04/cub3D/MLX42/build/CMakeFiles/mlx42.dir
+/home/jsalaber/Cursus/github/rank04/cub3D/MLX42/build/CMakeFiles/edit_cache.dir
+/home/jsalaber/Cursus/github/rank04/cub3D/MLX42/build/CMakeFiles/rebuild_cache.dir
+/home/jsalaber/Cursus/github/rank04/cub3D/MLX42/build/CMakeFiles/list_install_components.dir
+/home/jsalaber/Cursus/github/rank04/cub3D/MLX42/build/CMakeFiles/install.dir
+/home/jsalaber/Cursus/github/rank04/cub3D/MLX42/build/CMakeFiles/install/local.dir
+/home/jsalaber/Cursus/github/rank04/cub3D/MLX42/build/CMakeFiles/install/strip.dir

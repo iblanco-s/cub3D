@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exec.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: junesalaberria <junesalaberria@student.    +#+  +:+       +#+        */
+/*   By: jsalaber <jsalaber@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/28 09:28:47 by jsalaber          #+#    #+#             */
-/*   Updated: 2024/07/12 17:01:48 by junesalaber      ###   ########.fr       */
+/*   Updated: 2024/07/15 09:41:26 by jsalaber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,26 +57,17 @@ void	locate_player(t_mlx *mlx)
 void mouse_moved(void *param)
 {
     t_mlx *mlx;
-    int mouse_x, mouse_y;
-    float sensitivity = 0.05f; // Ajusta la sensibilidad según sea necesario
+    int mouse_x;
+	int mouse_y;
+	int	delta_x;
+    float sensitivity;
 
+	sensitivity = 0.01f;
     mlx = param;
     mlx_get_mouse_pos(mlx->mlx_ptr, &mouse_x, &mouse_y);
-
-    // Calcula el cambio en la posición del ratón desde el centro de la pantalla
-    int delta_x = mouse_x - (WW / 2);
-    int delta_y = mouse_y - (WH / 2);
-
-    // Actualiza la dirección del jugador de manera suave
+    delta_x = mouse_x - (WW / 2);
     mlx->play->playr_dir += sensitivity * delta_x;
-
-    // Asegúrate de que el ángulo esté dentro del rango [0, 2*PI)
-    if (mlx->play->playr_dir >= 2 * PI)
-        mlx->play->playr_dir -= 2 * PI;
-    else if (mlx->play->playr_dir < 0)
-        mlx->play->playr_dir += 2 * PI;
-
-    // Vuelve a centrar el ratón en el medio de la pantalla
+    mlx->play->playr_dir = normalize_angle(mlx->play->playr_dir);
     mlx_set_mouse_pos(mlx->mlx_ptr, WW / 2, WH / 2);
 }
 
