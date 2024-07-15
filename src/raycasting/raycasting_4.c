@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   raycasting_4.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: junesalaberria <junesalaberria@student.    +#+  +:+       +#+        */
+/*   By: iblanco- <iblanco-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/03 10:02:42 by jsalaber          #+#    #+#             */
-/*   Updated: 2024/07/12 16:08:26 by junesalaber      ###   ########.fr       */
+/*   Updated: 2024/07/15 11:42:45 by iblanco-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -131,5 +131,5 @@ void	raycasting(t_mlx *mlx)
 		draw_wall_segment(mlx, ray);
 		ray++;
 		mlx->ray->ray_angle += (mlx->play->fov_rad / WW);
-	}	
+	}
 }

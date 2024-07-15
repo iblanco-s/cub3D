@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   raycasting_3.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: junesalaberria <junesalaberria@student.    +#+  +:+       +#+        */
+/*   By: iblanco- <iblanco-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/02 12:54:07 by jsalaber          #+#    #+#             */
-/*   Updated: 2024/07/12 15:15:07 by junesalaber      ###   ########.fr       */
+/*   Updated: 2024/07/15 11:17:09 by iblanco-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,7 @@ double	get_impact_point(mlx_texture_t *texture, t_mlx *mlx)
 		impact_point = (int)fmodf((mlx->ray->wall_h_x
 					* (texture->width / TILE_SIZE)), texture->width);
 	}
-	else
+	else if (mlx->ray->flag == 0)
 	{
 		impact_point = (int)fmodf((mlx->ray->wall_v_y
 					* (texture->width / TILE_SIZE)), texture->width);

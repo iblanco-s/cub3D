@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3D.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: junesalaberria <junesalaberria@student.    +#+  +:+       +#+        */
+/*   By: iblanco- <iblanco-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/12 09:55:16 by jsalaber          #+#    #+#             */
-/*   Updated: 2024/07/12 17:00:37 by junesalaber      ###   ########.fr       */
+/*   Updated: 2024/07/15 11:37:00 by iblanco-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,13 +90,6 @@ typedef struct s_ray
 	int			flag;
 }	t_ray;
 
-typedef struct s_paint_ray
-{
-	double				x;
-	double				y;
-	struct s_paint_ray	*next;
-}	t_paint_ray;
-
 typedef struct s_mlx
 {
 	mlx_t		*mlx_ptr;
@@ -106,7 +99,6 @@ typedef struct s_mlx
 	t_ray		*ray;
 	t_text		*mlx_texture;
 	t_tex		*tex;
-	t_paint_ray	*paint_ray;
 	mouse_mode_t	mouse;
 }	t_mlx;
 
