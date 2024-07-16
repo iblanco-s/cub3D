@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3D.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: iblanco- <iblanco-@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jsalaber <jsalaber@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/12 09:55:16 by jsalaber          #+#    #+#             */
-/*   Updated: 2024/07/16 09:51:49 by iblanco-         ###   ########.fr       */
+/*   Updated: 2024/07/16 10:51:00 by jsalaber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,13 +22,21 @@
 # include <stdint.h>
 # include <stdarg.h>
 
-# define WW 800
-# define WH 600
+# define WW 1600
+# define WH 900
 # define FOV 60
 # define TILE_SIZE 64
 # define PI 3.14159265358979323846
 # define ROTATION_SPEED 0.042
 # define MOVE_SPEED 3
+
+typedef struct s_param
+{
+	mlx_texture_t	*texture;
+	double			ip_x;
+	double			ip_y;
+	double			scale;
+}	t_param;
 
 typedef struct s_text
 {
@@ -170,6 +178,7 @@ void			free_textures(t_text *texture_list);
 void			ft_exit(t_mlx *mlx);
 
 //RAYCASTING.c-raycasting_2.c
+void			ft_put_pixel(t_mlx *mlx, int x, int y, int color);
 void			draw_wall_segment(t_mlx *mlx, int ray);
 int				get_rgba(int r, int g, int b, int a);
 
@@ -182,6 +191,12 @@ int				unit_circle(float angle, char axis);
 
 //RAYCASTING.c-raycasting_4.c
 void			raycasting(t_mlx *mlx);
+
+//RAYCASTING.c-raycasting_5.c
+void			wall_params(t_mlx *mlx, int u_pix, double wall_height,
+					t_param *params);
+void			draw_wall_pixels(t_mlx *mlx, int d_pix, int u_pix,
+					t_param *params);
 
 //MINIMAP.c
 void			draw_minimap(t_mlx *mlx);
