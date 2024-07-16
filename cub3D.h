@@ -6,7 +6,7 @@
 /*   By: jsalaber <jsalaber@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/12 09:55:16 by jsalaber          #+#    #+#             */
-/*   Updated: 2024/07/16 10:51:00 by jsalaber         ###   ########.fr       */
+/*   Updated: 2024/07/16 11:32:46 by jsalaber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,8 +22,8 @@
 # include <stdint.h>
 # include <stdarg.h>
 
-# define WW 1600
-# define WH 900
+# define WW 1920
+# define WH 1080
 # define FOV 60
 # define TILE_SIZE 64
 # define PI 3.14159265358979323846

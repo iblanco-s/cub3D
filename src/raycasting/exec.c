@@ -3,15 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   exec.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: iblanco- <iblanco-@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jsalaber <jsalaber@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/28 09:28:47 by jsalaber          #+#    #+#             */
-/*   Updated: 2024/07/15 11:45:06 by iblanco-         ###   ########.fr       */
+/*   Updated: 2024/07/16 11:33:31 by jsalaber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../cub3D.h"
 
+// draw_minimap(mlx);
 void	redraw_map(void *mlx_t)
 {
 	t_mlx	*mlx;
@@ -21,7 +22,6 @@ void	redraw_map(void *mlx_t)
 	mlx->img = mlx_new_image(mlx->mlx_ptr, WW, WH);
 	execute_player_move(mlx, 0, 0);
 	raycasting(mlx);
-	draw_minimap(mlx);
 	mlx_image_to_window(mlx->mlx_ptr, mlx->img, 0, 0);
 }
 
