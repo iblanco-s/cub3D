@@ -1,10 +1,10 @@
-NO textures/north.png
-SO textures/south.png
-WE textures/west2.png
-EA textures/east.png
+NO textures/blue_wall.png
+SO textures/brick_wall.png
+WE textures/steel_wall.png
+EA textures/grey_wall.png
 
-C 255,255,255
-F 60,179,255
+C 192,192,192
+F 128,128,128
 
 
         11111111111111111111111111
