@@ -6,7 +6,7 @@
 /*   By: iblanco- <iblanco-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/12 12:03:55 by jsalaber          #+#    #+#             */
-/*   Updated: 2024/07/16 09:55:11 by iblanco-         ###   ########.fr       */
+/*   Updated: 2024/07/16 17:34:44 by iblanco-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,8 @@ void	ft_free_arr(char **arr)
 	int	i;
 
 	i = 0;
+	if (!arr)
+		return ;
 	while (arr[i])
 	{
 		free(arr[i]);
@@ -69,7 +71,7 @@ int	read_map(char *argv, t_data *data, int *count)
 	if (!data->split_texture)
 		return (ft_free_readmap(NULL, data->texture, data->fd), 0);
 	if (!check_map_content(data, *count))
-		return (0);
+		return (ft_free_readmap(data->line, data->texture, data->fd), 0);
 	return (ft_free_readmap(data->line, data->texture, data->fd), 1);
 }
 

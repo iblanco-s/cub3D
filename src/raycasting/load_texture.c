@@ -6,7 +6,7 @@
 /*   By: iblanco- <iblanco-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/01 09:31:07 by jsalaber          #+#    #+#             */
-/*   Updated: 2024/07/16 09:55:17 by iblanco-         ###   ########.fr       */
+/*   Updated: 2024/07/16 14:31:30 by iblanco-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,9 +17,9 @@ bool	valid_texture(int width, int height)
 	if (width != TILE_SIZE || height != TILE_SIZE)
 	{
 		ft_error("Error\nTexture size is correct\n");
-		return (false);
+		return (0);
 	}
-	return (true);
+	return (1);
 }
 
 int	load_texture(t_text *text)

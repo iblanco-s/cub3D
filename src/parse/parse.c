@@ -6,7 +6,7 @@
 /*   By: iblanco- <iblanco-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/12 10:52:44 by jsalaber          #+#    #+#             */
-/*   Updated: 2024/07/16 09:55:00 by iblanco-         ###   ########.fr       */
+/*   Updated: 2024/07/16 17:37:57 by iblanco-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ int	ft_error(char *str)
 {
 	while (*str)
 		write(2, str++, 1);
-	return (1);
+	return (0);
 }
 
 void	get_player_position(t_data *data)
@@ -62,6 +62,28 @@ void	get_lines_column(t_data *data)
 	data->map_lines = i;
 }
 
+void	ft_data_init(t_data *data)
+{
+	if (!data)
+		return ;
+	data->fd = -1;
+	data->line = NULL;
+	data->texture = NULL;
+	data->split_texture = NULL;
+	data->map = NULL;
+	data->split_map = NULL;
+	data->map_copy = NULL;
+	data->map_height = 0;
+	data->map_width = 0;
+	data->player_x = 0;
+	data->player_y = 0;
+	data->map_column = 0;
+	data->map_lines = 0;
+	data->floor = NULL;
+	data->ceiling = NULL;
+	data->texture_list = NULL;
+}
+
 int	parse(int argc, char **argv, t_data *data, t_text *list_texture)
 {
 	int	count;
@@ -70,7 +92,7 @@ int	parse(int argc, char **argv, t_data *data, t_text *list_texture)
 	if (argc != 2 || !check_extension(argv[1]))
 	{
 		ft_error("Error\nWrong argument\n");
-		exit(0);
+		exit(1);
 	}
 	count = 0;
 	if (!read_map(argv[1], data, &count))

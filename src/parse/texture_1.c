@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   texture_1.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jsalaber <jsalaber@student.42.fr>          +#+  +:+       +#+        */
+/*   By: iblanco- <iblanco-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/28 09:58:13 by jsalaber          #+#    #+#             */
-/*   Updated: 2024/07/01 09:45:54 by jsalaber         ###   ########.fr       */
+/*   Updated: 2024/07/16 15:55:48 by iblanco-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,6 +58,27 @@ void	last_texture(t_text **mlx_texture, t_text *new)
 	tmp->next = new;
 }
 
+int	ft_check_texture(char *file)
+{
+	int	len;
+	int	fd;
+
+	len = ft_strlen(file);
+	if (len < 4 || ft_strncmp(file + len - 4, ".png", 4) != 0)
+	{
+		ft_putendl_fd("Error\nInvalid file extension. Must be '.png'", 2);
+		return (0);
+	}
+	fd = open(file, O_RDONLY);
+	if (fd == -1)
+	{
+		ft_putendl_fd("Error\nFile does not exist or is not accessible", 2);
+		return (0);
+	}
+	close(fd);
+	return (1);
+}
+
 int	ft_list_texture(t_data *data, t_text **mlx_texture)
 {
 	int		i;
@@ -69,6 +90,9 @@ int	ft_list_texture(t_data *data, t_text **mlx_texture)
 		new = new_texture(data->split_texture[i++]);
 		if (!new)
 			return (0);
+		if (i < 5 && !ft_check_texture(new->path))
+			return (free(new->path), free(new->value),
+				free(new), 0);
 		last_texture(mlx_texture, new);
 	}
 	return (1);

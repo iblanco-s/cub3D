@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jsalaber <jsalaber@student.42.fr>          +#+  +:+       +#+        */
+/*   By: iblanco- <iblanco-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/28 11:12:32 by jsalaber          #+#    #+#             */
-/*   Updated: 2024/07/04 10:07:39 by jsalaber         ###   ########.fr       */
+/*   Updated: 2024/07/16 16:10:37 by iblanco-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,8 @@ int	main(int argc, char **argv)
 {
 	t_data	data;
 
-	data.texture_list = NULL;
+	ft_data_init(&data);
 	if (!parse(argc, argv, &data, data.texture_list))
-		return (0);
+		return (ft_free_data(&data), 1);
 	exec(&data);
 }

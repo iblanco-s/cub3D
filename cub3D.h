@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3D.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jsalaber <jsalaber@student.42.fr>          +#+  +:+       +#+        */
+/*   By: iblanco- <iblanco-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/12 09:55:16 by jsalaber          #+#    #+#             */
-/*   Updated: 2024/07/16 11:32:46 by jsalaber         ###   ########.fr       */
+/*   Updated: 2024/07/16 16:08:36 by iblanco-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,10 +17,7 @@
 # include "libft/get_next_line.h"
 # include "MLX42/include/MLX42/MLX42.h"
 # include <unistd.h>
-# include <stdbool.h>
 # include <math.h>
-# include <stdint.h>
-# include <stdarg.h>
 
 # define WW 1920
 # define WH 1080
@@ -127,6 +124,7 @@ int				surrounded_by_wall(char **map);
 //PARSE-check_3.c
 int				check_column_round_by_wall(char *line);
 int				valid_map(char *line, int *count);
+void			ft_free_data(t_data *data);
 
 //PARSE-check.c
 int				check_extension(char *file);
@@ -158,6 +156,7 @@ int				ft_list_texture(t_data *data, t_text **mlx_texture);
 int				check_color(t_data *data, t_text *mlx_texture);
 
 //PARSE-parse.c
+void			ft_data_init(t_data *data);
 int				ft_error(char *str);
 void			get_player_position(t_data *data);
 void			get_lines_column(t_data *data);

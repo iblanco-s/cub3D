@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   check_3.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jsalaber <jsalaber@student.42.fr>          +#+  +:+       +#+        */
+/*   By: iblanco- <iblanco-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/14 16:06:49 by junesalaber       #+#    #+#             */
-/*   Updated: 2024/06/19 10:01:57 by jsalaber         ###   ########.fr       */
+/*   Updated: 2024/07/16 17:05:03 by iblanco-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,4 +39,18 @@ int	valid_map(char *line, int *count)
 		i++;
 	}
 	return (1);
+}
+
+void	ft_free_data(t_data *data)
+{
+	int	i;
+
+	i = 0;
+	if (!data->split_texture)
+		return ;
+	while (data->split_texture[i])
+	{
+		free(data->split_texture[i]);
+		i++;
+	}
 }

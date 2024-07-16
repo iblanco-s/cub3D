@@ -9,7 +9,7 @@
 			"request": "launch",
 			"name": "cub3D",
 			"program": "${workspaceFolder}/cub3D",
-			"args": ["map_copy.cub"],
+			"args": ["maps/map.cub"],
 			"cwd": "${workspaceFolder}"
 		}
 	]
