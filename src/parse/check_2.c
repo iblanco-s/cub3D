@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   check_2.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: junesalaberria <junesalaberria@student.    +#+  +:+       +#+        */
+/*   By: iblanco- <iblanco-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/14 15:52:14 by junesalaber       #+#    #+#             */
-/*   Updated: 2024/07/12 16:04:04 by junesalaber      ###   ########.fr       */
+/*   Updated: 2024/07/16 09:54:48 by iblanco-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ int	check_duplicate(t_data *data)
 		while (data->split_texture[j])
 		{
 			if (!ft_strncmp(data->split_texture[i], data->split_texture[j], 2))
-				return (ft_error("Error\n Duplicate texture\n"), 0);
+				return (ft_error("Error\nDuplicate texture\n"), 0);
 			j++;
 		}
 		i++;
@@ -59,10 +59,10 @@ char	*get_last_line(char **map)
 int	check_lines(char **map)
 {
 	if (!map[0])
-		return (ft_error("Error\n Empty map\n"), 0);
+		return (ft_error("Error\nEmpty map\n"), 0);
 	if (!check_line_round_by_wall(map[0])
 		|| !check_line_round_by_wall(get_last_line(map)))
-		return (ft_error("Error\n Map not surrounded by walls\n"), 0);
+		return (ft_error("Error\nMap not surrounded by walls\n"), 0);
 	return (1);
 }
 
@@ -77,10 +77,10 @@ int	surrounded_by_wall(char **map)
 	{
 		if (!check_column_round_by_wall(map[i])
 			|| !valid_map(map[i], &count) || count > 1)
-			return (ft_error("Error\n Invalid map\n"), 0);
+			return (ft_error("Error\nInvalid map\n"), 0);
 		i++;
 	}
 	if (count == 0)
-		return (ft_error("Error\n Missing character on the map\n"), 0);
+		return (ft_error("Error\nMissing character on the map\n"), 0);
 	return (1);
 }

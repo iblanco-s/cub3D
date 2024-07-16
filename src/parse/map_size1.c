@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   map_size1.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: junesalaberria <junesalaberria@student.    +#+  +:+       +#+        */
+/*   By: iblanco- <iblanco-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/19 09:03:40 by jsalaber          #+#    #+#             */
-/*   Updated: 2024/07/12 16:04:52 by junesalaber      ###   ########.fr       */
+/*   Updated: 2024/07/16 09:56:02 by iblanco-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,7 +76,7 @@ int	manage_spaces_width(char **map)
 			{
 				if (map[x][y - 1] == ' ' || map[x][y + 1] == ' ')
 				{
-					ft_error("Error\n Invalid map (spaces in width)");
+					ft_error("Error\nInvalid map (spaces in width)\n");
 					return (0);
 				}
 			}
@@ -102,7 +102,7 @@ int	manage_spaces_height(char **map)
 			{
 				if (map[x - 1][y] == ' ' || map[x + 1][y] == ' ')
 				{
-					ft_error("Error\n Invalid map (spaces in height)");
+					ft_error("Error\nInvalid map (spaces in height)\n");
 					return (0);
 				}
 			}

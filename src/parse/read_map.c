@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   read_map.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: junesalaberria <junesalaberria@student.    +#+  +:+       +#+        */
+/*   By: iblanco- <iblanco-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/12 12:03:55 by jsalaber          #+#    #+#             */
-/*   Updated: 2024/07/12 16:04:37 by junesalaber      ###   ########.fr       */
+/*   Updated: 2024/07/16 09:55:11 by iblanco-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,10 +48,10 @@ int	read_map(char *argv, t_data *data, int *count)
 {
 	data->fd = open(argv, O_RDONLY);
 	if (data->fd == -1)
-		return (ft_error("Error\n File not found\n"));
+		return (ft_error("Error\nFile not found\n"));
 	data->line = get_next_line(data->fd);
 	if (!data->line)
-		return (ft_error("Error\n File is empty\n"));
+		return (ft_error("Error\nFile is empty\n"));
 	data->texture = ft_strdup("");
 	while (data->line && data->line[0] != '1' && data->line[0] != ' ')
 	{

@@ -6,7 +6,7 @@
 /*   By: iblanco- <iblanco-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/12 09:55:16 by jsalaber          #+#    #+#             */
-/*   Updated: 2024/07/15 11:37:00 by iblanco-         ###   ########.fr       */
+/*   Updated: 2024/07/16 09:51:49 by iblanco-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@
 # include <stdbool.h>
 # include <math.h>
 # include <stdint.h>
-#include <stdarg.h>
+# include <stdarg.h>
 
 # define WW 800
 # define WH 600
@@ -92,86 +92,86 @@ typedef struct s_ray
 
 typedef struct s_mlx
 {
-	mlx_t		*mlx_ptr;
-	mlx_image_t	*img;
-	t_data		*dat;
-	t_player	*play;
-	t_ray		*ray;
-	t_text		*mlx_texture;
-	t_tex		*tex;
+	mlx_t			*mlx_ptr;
+	mlx_image_t		*img;
+	t_data			*dat;
+	t_player		*play;
+	t_ray			*ray;
+	t_text			*mlx_texture;
+	t_tex			*tex;
 	mouse_mode_t	mouse;
 }	t_mlx;
 
 //PARSE-check_1.c
-int		check_split_letter(char *line);
-int		check_split_texture(char **split_texture, int count);
-int		count_comma(char *p);
-int		check_comma_position(char *line);
-int		check_fc_fromat(char **split_texture);
+int				check_split_letter(char *line);
+int				check_split_texture(char **split_texture, int count);
+int				count_comma(char *p);
+int				check_comma_position(char *line);
+int				check_fc_fromat(char **split_texture);
 
 //PARSE-check_2.c
-int		check_duplicate(t_data *data);
-int		check_line_round_by_wall(char *line);
-char	*get_last_line(char **map);
-int		check_lines(char **map);
-int		surrounded_by_wall(char **map);
+int				check_duplicate(t_data *data);
+int				check_line_round_by_wall(char *line);
+char			*get_last_line(char **map);
+int				check_lines(char **map);
+int				surrounded_by_wall(char **map);
 
 //PARSE-check_3.c
-int		check_column_round_by_wall(char *line);
-int		valid_map(char *line, int *count);
+int				check_column_round_by_wall(char *line);
+int				valid_map(char *line, int *count);
 
 //PARSE-check.c
-int		check_extension(char *file);
-int		check_textures(char *line);
-int		count_texture(t_data *data, int count);
-char	*get_map(t_data *data);
-int		check_map_content(t_data *data, int count);
+int				check_extension(char *file);
+int				check_textures(char *line);
+int				count_texture(t_data *data, int count);
+char			*get_map(t_data *data);
+int				check_map_content(t_data *data, int count);
 
 //PARSE-read_map.c
-void	ft_free_readmap(char *line, char *texture, int fd);
-void	ft_free_arr(char **arr);
-int		read_map(char *argv, t_data *data, int *count);
-void	ft_freemap(t_data *data);
+void			ft_free_readmap(char *line, char *texture, int fd);
+void			ft_free_arr(char **arr);
+int				read_map(char *argv, t_data *data, int *count);
+void			ft_freemap(t_data *data);
 
 //PARSE-map_size1.c
-int		map_len(char **map);
-int		line_maxlen(char **map);
-char	*adjust_line(char *line, int max_len);
-int		manage_spaces_width(char **map);
-int		manage_spaces_height(char **map);
+int				map_len(char **map);
+int				line_maxlen(char **map);
+char			*adjust_line(char *line, int max_len);
+int				manage_spaces_width(char **map);
+int				manage_spaces_height(char **map);
 
 //PARSE-map_size.c
-int		map_size(t_data *data);
+int				map_size(t_data *data);
 
 //PARSE-texture_1.c
-int		ft_list_texture(t_data *data, t_text **mlx_texture);
+int				ft_list_texture(t_data *data, t_text **mlx_texture);
 
 //PARSE-texture_2.c
-int		check_color(t_data *data, t_text *mlx_texture);
+int				check_color(t_data *data, t_text *mlx_texture);
 
 //PARSE-parse.c
-int		ft_error(char *str);
-void	get_player_position(t_data *data);
-void	get_lines_column(t_data *data);
-int		parse(int argc, char **argv, t_data *data, t_text *tx);
+int				ft_error(char *str);
+void			get_player_position(t_data *data);
+void			get_lines_column(t_data *data);
+int				parse(int argc, char **argv, t_data *data, t_text *tx);
 
 //RAYCASTING-exec.c
-int		exec(t_data *dat);
+int				exec(t_data *dat);
 
 //RAYCASTING-load_texture.c
-int		load_all_textures(t_tex *tex, t_text *texture);
+int				load_all_textures(t_tex *tex, t_text *texture);
 
 //RAYCASTING-move.c
-void	execute_player_move(t_mlx *mlx, double move_x, double move_y);
-void	key_pressed(mlx_key_data_t keycode, void *param);
+void			execute_player_move(t_mlx *mlx, double move_x, double move_y);
+void			key_pressed(mlx_key_data_t keycode, void *param);
 
 //RAYCASTING-exit.c
-void	free_textures(t_text *texture_list);
-void	ft_exit(t_mlx *mlx);
+void			free_textures(t_text *texture_list);
+void			ft_exit(t_mlx *mlx);
 
 //RAYCASTING.c-raycasting_2.c
-void	draw_wall_segment(t_mlx *mlx, int ray);
-int		get_rgba(int r, int g, int b, int a);
+void			draw_wall_segment(t_mlx *mlx, int ray);
+int				get_rgba(int r, int g, int b, int a);
 
 //RAYCASTING.c-raycasting_3.c
 int				reverse_bytes(int num);
@@ -181,14 +181,11 @@ double			get_impact_point(mlx_texture_t *texture, t_mlx *mlx);
 int				unit_circle(float angle, char axis);
 
 //RAYCASTING.c-raycasting_4.c
-void	raycasting(t_mlx *mlx);
+void			raycasting(t_mlx *mlx);
 
 //MINIMAP.c
-void	draw_minimap(t_mlx *mlx);
-void	draw_player(t_mlx *mlx);
-void	draw_ray_minimap(t_mlx *mlx, double x, double y);
-
-#define DEBUG 1
-void debug_print(const char *format, ...);
+void			draw_minimap(t_mlx *mlx);
+void			draw_player(t_mlx *mlx);
+void			draw_ray_minimap(t_mlx *mlx, double x, double y);
 
 #endif
