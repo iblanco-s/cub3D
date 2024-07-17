@@ -6,7 +6,7 @@
 /*   By: iblanco- <iblanco-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/28 11:12:32 by jsalaber          #+#    #+#             */
-/*   Updated: 2024/07/16 16:10:37 by iblanco-         ###   ########.fr       */
+/*   Updated: 2024/07/17 11:13:23 by iblanco-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,6 @@ int	main(int argc, char **argv)
 
 	ft_data_init(&data);
 	if (!parse(argc, argv, &data, data.texture_list))
-		return (ft_free_data(&data), 1);
+		return (ft_free_arr(data.split_texture), 1);
 	exec(&data);
 }
