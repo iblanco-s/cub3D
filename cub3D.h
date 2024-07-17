@@ -6,7 +6,7 @@
 /*   By: iblanco- <iblanco-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/12 09:55:16 by jsalaber          #+#    #+#             */
-/*   Updated: 2024/07/16 16:08:36 by iblanco-         ###   ########.fr       */
+/*   Updated: 2024/07/17 11:13:52 by iblanco-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -124,7 +124,6 @@ int				surrounded_by_wall(char **map);
 //PARSE-check_3.c
 int				check_column_round_by_wall(char *line);
 int				valid_map(char *line, int *count);
-void			ft_free_data(t_data *data);
 
 //PARSE-check.c
 int				check_extension(char *file);
