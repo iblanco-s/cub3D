@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   move.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jsalaber <jsalaber@student.42.fr>          +#+  +:+       +#+        */
+/*   By: iblanco- <iblanco-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/01 13:01:50 by jsalaber          #+#    #+#             */
-/*   Updated: 2024/07/15 09:42:24 by jsalaber         ###   ########.fr       */
+/*   Updated: 2024/07/17 12:52:25 by iblanco-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,12 +41,17 @@ void	move_player(t_mlx *mlx, double move_x, double move_y)
 	map_new_y = (new_y / TILE_SIZE);
 	if (mlx->dat->split_map[map_new_y][map_new_x] != '1'
 		&& mlx->dat->split_map[map_new_y][mlx->play->playr_x / \
-		TILE_SIZE != '1']
-		&& mlx->dat->split_map[mlx->play->playr_y / \
+		TILE_SIZE] != '1' && mlx->dat->split_map[mlx->play->playr_y / \
 		TILE_SIZE][map_new_x] != '1')
 	{
-		mlx->play->playr_x = new_x;
-		mlx->play->playr_y = new_y;
+		if (mlx->dat->split_map[map_new_y][(new_x + MWD) / TILE_SIZE] == '1' ||
+			mlx->dat->split_map[map_new_y][(new_x - MWD) / TILE_SIZE] == '1')
+			move_x = 0;
+		if (mlx->dat->split_map[(new_y + MWD) / TILE_SIZE][map_new_x] == '1' ||
+			mlx->dat->split_map[(new_y - MWD) / TILE_SIZE][map_new_x] == '1')
+			move_y = 0;
+		mlx->play->playr_x += move_x;
+		mlx->play->playr_y += move_y;
 	}
 }
 

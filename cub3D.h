@@ -6,7 +6,7 @@
 /*   By: iblanco- <iblanco-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/12 09:55:16 by jsalaber          #+#    #+#             */
-/*   Updated: 2024/07/17 11:13:52 by iblanco-         ###   ########.fr       */
+/*   Updated: 2024/07/17 12:52:07 by iblanco-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,7 @@
 # define PI 3.14159265358979323846
 # define ROTATION_SPEED 0.042
 # define MOVE_SPEED 3
+# define MWD 5
 
 typedef struct s_param
 {
