@@ -1,6 +1,6 @@
 # cub3D
 
-cub3D is a 42 school project inspired by the world-famous Wolfenstein 3D game, which was the first FPS in history. Using the MiniLibX library, we must implement raycasting to create a dynamic view inside a 3D maze.
+cub3D is a 42 school project inspired by the world-famous Wolfenstein 3D game, which was the first FPS in history. Using the MLX42 library, we must implement raycasting to create a dynamic view inside a 3D maze.
 
 ![cub3d](https://github.com/user-attachments/assets/6a3416dd-48f5-4a57-8e3e-11f787c6ef22)
 
